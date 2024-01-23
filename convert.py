@@ -74,12 +74,13 @@ def make_index():
         for tex in tex_files:
             f.write(f'.. include:: {tex[:-4]}.rst \n')
 
-# Example usage
-rst = "docs/source/index.rst"
+if __name__ == "__main__":
+    # Example usage
+    rst = "docs/source/index.rst"
 
-clean_rst("docs/source")
-make_index()
-for tex in os.listdir("tex"):
-    tex_to_rst(os.path.join('tex', tex), f"docs/source/{tex[:-4]}.rst")
-make_sphinx()
-rst_to_pdf(rst, 'out.tex', 'out.pdf', open=False)
+    clean_rst("docs/source")
+    make_index()
+    for tex in os.listdir("tex"):
+        tex_to_rst(os.path.join('tex', tex), f"docs/source/{tex[:-4]}.rst")
+    make_sphinx()
+    rst_to_pdf(rst, 'out.tex', 'out.pdf', open=False)
