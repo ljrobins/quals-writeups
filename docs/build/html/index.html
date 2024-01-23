@@ -39,9 +39,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gps.html">Satellite Navigation Past Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="orb.html">Orbit Mechanics Past Problems</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-1">Problem 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-0">Problem 0</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement">Problem statement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-1">Problem 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement-1">Problem statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orb.html#solution-1">Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -56,10 +61,81 @@
 </section>
 <section id="orbit-mechanics-past-problems">
 <h1>Orbit Mechanics Past Problems<a class="headerlink" href="#orbit-mechanics-past-problems" title="Link to this heading">¶</a></h1>
-<section id="problem-1">
-<h2>Problem 1<a class="headerlink" href="#problem-1" title="Link to this heading">¶</a></h2>
+<section id="problem-0">
+<h2>Problem 0<a class="headerlink" href="#problem-0" title="Link to this heading">¶</a></h2>
 <section id="problem-statement">
 <h3>Problem statement<a class="headerlink" href="#problem-statement" title="Link to this heading">¶</a></h3>
+<p>In Keplerian mechanics, several important types of orbital maneuvers are
+noncoplanar. For example, the capability to change both the ascending
+node and the inclination with only one maneuver is efficient and can
+widen the launch window.</p>
+<p>Assume that the orbital elements for an Earth orbit are given. If the
+orbit is circular both initially and after the maneuver, let
+<span class="math notranslate nohighlight">\(i_0=30^\circ\)</span>, <span class="math notranslate nohighlight">\(i_f=90^\circ\)</span>, <span class="math notranslate nohighlight">\(\Omega_o=0^\circ\)</span>,
+<span class="math notranslate nohighlight">\(\Omega_f=60^\circ\)</span>, where <span class="math notranslate nohighlight">\(o\)</span> reflects the original orbit
+and <span class="math notranslate nohighlight">\(f\)</span> indicates a value in the final orbit.</p>
+<ol class="arabic simple">
+<li><p>Determine the appropriate maneuver location in each orbit.</p></li>
+<li><p>If the circular orbit possesses a radius of <span class="math notranslate nohighlight">\(4R_\oplus\)</span>,
+determine the magnitude of the required single impulse to accomplish
+the goal.</p></li>
+</ol>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h3>
+<p>We’ll define the “location” of the maneuver in the initial and final
+orbits with the argument of latitude <span class="math notranslate nohighlight">\(\theta_o\)</span> and
+<span class="math notranslate nohighlight">\(\theta_f\)</span>, the angle between the ascending node and the
+spacecraft’s position vector. Because the orbits are circular, we can’t
+really use the true anomaly. We can then form a spherical triangle with
+side lengths <span class="math notranslate nohighlight">\(\Omega_f - \Omega_o\)</span> along the equator, and then
+<span class="math notranslate nohighlight">\(\theta_i\)</span> extending upwards from the left at an angle of
+<span class="math notranslate nohighlight">\(i_0\)</span>, and <span class="math notranslate nohighlight">\(\theta_f\)</span> extending upwards from the right at an
+angle of <span class="math notranslate nohighlight">\(i_f\)</span>.</p>
+<p>Using the spherical law of sines, we can solve for <span class="math notranslate nohighlight">\(\theta_o\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\sin\theta_o}{\sin i_f} &amp;= \frac{\sin(\Omega_f - \Omega_o)}{\sin\left(180^\circ-i_0-i_f\right)} \\
+    \sin\theta_o &amp;= \frac{\sin i_f \sin(\Omega_f - \Omega_o)}{\sin\left(180^\circ-i_0-i_f\right)} \\
+\end{aligned}\end{split}\]</div>
+<p>Plugging in values, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sin\theta_o &amp;= \frac{\sin 90^\circ \sin(60^\circ - 0^\circ)}{\sin\left(180^\circ-30^\circ-90^\circ\right)} \\
+    &amp;= \frac{\sin 60^\circ}{\sin 60^\circ} \\
+    &amp;= 1 \\
+    \theta_o &amp;= 90^\circ
+\end{aligned}\end{split}\]</div>
+<p>And similarly for <span class="math notranslate nohighlight">\(\theta_f\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\sin\theta_f}{\sin i_o} &amp;= \frac{\sin(\Omega_f - \Omega_o)}{\sin\left(180^\circ-i_0-i_f\right)} = 1 \\
+    \theta_f &amp;= i_o = 30^\circ
+\end{aligned}\end{split}\]</div>
+<p>The magnitude of the required impulse is given by the law of cosines,
+where we know that the angle between the initial and final position
+vectors is <span class="math notranslate nohighlight">\(i_f - i_o = 60^\circ\)</span>, the interior angle of the
+spherical triangle at the point of intersection. The circular velocity
+in the initial orbit is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_c &amp;= \sqrt{\frac{\mu_\oplus}{r}} \\
+    &amp;= \sqrt{\frac{\mu_\oplus}{4R_\oplus}} \\
+\end{aligned}\end{split}\]</div>
+<p>And the magnitude of the required impulse is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\Delta v}{2 v_c} &amp;= \sin\left( \frac{60^\circ}{2} \right) \\
+    &amp;= \frac{1}{2} \\
+    \Delta v &amp;= v_c \\
+    &amp;= \sqrt{\frac{\mu_\oplus}{4R_\oplus}} \\
+\end{aligned}\end{split}\]</div>
+</section>
+</section>
+<section id="problem-1">
+<h2>Problem 1<a class="headerlink" href="#problem-1" title="Link to this heading">¶</a></h2>
+<section id="problem-statement-1">
+<span id="id1"></span><h3>Problem statement<a class="headerlink" href="#problem-statement-1" title="Link to this heading">¶</a></h3>
 <p>Consider a hyperbolic flyby of a planet</p>
 <ol class="arabic simple">
 <li><p>Determine the values of the periapsis flyby radius <span class="math notranslate nohighlight">\(r_p\)</span> and
@@ -74,8 +150,8 @@ numerical values for the corresponding turn angle <span class="math notranslate 
 the hyperbolic eccentricity <span class="math notranslate nohighlight">\(e\)</span>.</p></li>
 </ol>
 </section>
-<section id="solution">
-<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h3>
+<section id="solution-1">
+<span id="id2"></span><h3>Solution<a class="headerlink" href="#solution-1" title="Link to this heading">¶</a></h3>
 <p>We know that the angle between the incoming and outgoing hyperbolic
 asymptotes is given by:</p>
 <div class="math notranslate nohighlight">

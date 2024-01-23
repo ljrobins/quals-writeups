@@ -1,8 +1,99 @@
 Orbit Mechanics Past Problems
 =============================
 
+Problem 0
+---------
+
+Problem statement
+~~~~~~~~~~~~~~~~~
+
+In Keplerian mechanics, several important types of orbital maneuvers are
+noncoplanar. For example, the capability to change both the ascending
+node and the inclination with only one maneuver is efficient and can
+widen the launch window.
+
+Assume that the orbital elements for an Earth orbit are given. If the
+orbit is circular both initially and after the maneuver, let
+:math:`i_0=30^\circ`, :math:`i_f=90^\circ`, :math:`\Omega_o=0^\circ`,
+:math:`\Omega_f=60^\circ`, where :math:`o` reflects the original orbit
+and :math:`f` indicates a value in the final orbit.
+
+#. Determine the appropriate maneuver location in each orbit.
+
+#. If the circular orbit possesses a radius of :math:`4R_\oplus`,
+   determine the magnitude of the required single impulse to accomplish
+   the goal.
+
+Solution
+~~~~~~~~
+
+We’ll define the “location” of the maneuver in the initial and final
+orbits with the argument of latitude :math:`\theta_o` and
+:math:`\theta_f`, the angle between the ascending node and the
+spacecraft’s position vector. Because the orbits are circular, we can’t
+really use the true anomaly. We can then form a spherical triangle with
+side lengths :math:`\Omega_f - \Omega_o` along the equator, and then
+:math:`\theta_i` extending upwards from the left at an angle of
+:math:`i_0`, and :math:`\theta_f` extending upwards from the right at an
+angle of :math:`i_f`.
+
+Using the spherical law of sines, we can solve for :math:`\theta_o`:
+
+.. math::
+
+   \begin{aligned}
+       \frac{\sin\theta_o}{\sin i_f} &= \frac{\sin(\Omega_f - \Omega_o)}{\sin\left(180^\circ-i_0-i_f\right)} \\
+       \sin\theta_o &= \frac{\sin i_f \sin(\Omega_f - \Omega_o)}{\sin\left(180^\circ-i_0-i_f\right)} \\
+   \end{aligned}
+
+Plugging in values, we find:
+
+.. math::
+
+   \begin{aligned}
+       \sin\theta_o &= \frac{\sin 90^\circ \sin(60^\circ - 0^\circ)}{\sin\left(180^\circ-30^\circ-90^\circ\right)} \\
+       &= \frac{\sin 60^\circ}{\sin 60^\circ} \\
+       &= 1 \\
+       \theta_o &= 90^\circ
+   \end{aligned}
+
+And similarly for :math:`\theta_f`:
+
+.. math::
+
+   \begin{aligned}
+       \frac{\sin\theta_f}{\sin i_o} &= \frac{\sin(\Omega_f - \Omega_o)}{\sin\left(180^\circ-i_0-i_f\right)} = 1 \\
+       \theta_f &= i_o = 30^\circ
+   \end{aligned}
+
+The magnitude of the required impulse is given by the law of cosines,
+where we know that the angle between the initial and final position
+vectors is :math:`i_f - i_o = 60^\circ`, the interior angle of the
+spherical triangle at the point of intersection. The circular velocity
+in the initial orbit is given by:
+
+.. math::
+
+   \begin{aligned}
+       v_c &= \sqrt{\frac{\mu_\oplus}{r}} \\
+       &= \sqrt{\frac{\mu_\oplus}{4R_\oplus}} \\
+   \end{aligned}
+
+And the magnitude of the required impulse is given by:
+
+.. math::
+
+   \begin{aligned}
+       \frac{\Delta v}{2 v_c} &= \sin\left( \frac{60^\circ}{2} \right) \\
+       &= \frac{1}{2} \\
+       \Delta v &= v_c \\
+       &= \sqrt{\frac{\mu_\oplus}{4R_\oplus}} \\
+   \end{aligned}
+
 Problem 1
 ---------
+
+.. _problem-statement-1:
 
 Problem statement
 ~~~~~~~~~~~~~~~~~
@@ -20,6 +111,8 @@ Consider a hyperbolic flyby of a planet
    the circular speed at the surface of the planet. Also determine the
    numerical values for the corresponding turn angle :math:`\delta` and
    the hyperbolic eccentricity :math:`e`.
+
+.. _solution-1:
 
 Solution
 ~~~~~~~~
