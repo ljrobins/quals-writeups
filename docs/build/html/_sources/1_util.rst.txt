@@ -1,0 +1,23 @@
+Useful Identities
+=================
+
+Trigonometry
+------------
+
+.. math::
+
+   \begin{aligned}
+       \mathbf{a} \times \left(\mathbf{b} \times \mathbf{c}\right) &= \mathbf{b}\left(\mathbf{a} \cdot \mathbf{c}\right) - \mathbf{c}\left(\mathbf{a} \cdot \mathbf{b}\right) \\
+       \left(\mathbf{a} \times \mathbf{b}\right) \times \mathbf{c} &= -\mathbf{a}\left(\mathbf{b} \cdot \mathbf{c}\right) + \mathbf{b} \left(\mathbf{a} \cdot \mathbf{c}\right) \\
+       \mathbf{a} \cdot \left(\mathbf{b} \times \mathbf{c}\right) &= \left(\mathbf{a} \times \mathbf{b}\right) \cdot \mathbf{c} \\
+   \end{aligned}
+
+Convolution
+-----------
+
+.. math::
+
+   \begin{aligned}
+       (f \star g)(t) &= \int_{-\infty}^{\infty} f(\tau) g(t-\tau) d\tau \\
+       &= \int_{-\infty}^{\infty} f(t-\tau) g(\tau) d\tau
+   \end{aligned}

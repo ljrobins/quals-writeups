@@ -1,0 +1,231 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage[margin=0.5in]{geometry}
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Astrodynamics and Space Applications Qualifying Exam
+Notes}\label{astrodynamics-and-space-applications-qualifying-exam-notes}
+
+gps
+
+orb
+
+quals
+
+sad
+
+stm
+
+\section{Satellite Navigation Past
+Problems}\label{satellite-navigation-past-problems}
+
+\section{Orbit Mechanics Past
+Problems}\label{orbit-mechanics-past-problems}
+
+\subsection{Problem 1}\label{problem-1}
+
+\subsubsection{Problem statement}\label{problem-statement}
+
+Consider a hyperbolic flyby of a planet
+
+\begin{enumerate}
+\tightlist
+\item
+  Determine the values of the periapsis flyby radius \(r_p\) and
+  hyperbolic excess speed \(v_\infty\) that yield the \emph{maximum
+  possible} magnitude of the equivalent \(\Delta v_{eq}\) for the
+  spacecraft due to the flyby. Express your answer for \(r_p\) in terms
+  of the planet radius \(r_s\); include the constraint that
+  \(r_p \geq r_s\).
+\item
+  Determine this maximum \(\Delta v_{eq}\) in terms of \(v_s\), the
+  circular speed at the surface of the planet. Also determine the
+  numerical values for the corresponding turn angle \(\delta\) and the
+  hyperbolic eccentricity \(e\).
+\end{enumerate}
+
+\subsubsection{Solution}\label{solution}
+
+We know that the angle between the incoming and outgoing hyperbolic
+asymptotes is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    \delta &= 2 \sin^{-1} \left( \frac{1}{e} \right) \\
+    &= 2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right)
+\end{aligned}
+\end{aligned}\]
+
+We'll use these two expressions for \(\delta\) to solve for the
+conditions that maximize \(\Delta v\). First, we have to find a way to
+introduce \(r_p\) into the equation. We know that the distance from the
+attracting focus to the center of the hyperbola is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    ae &= r_p + a \\
+    e &= \frac{r_p}{a} + 1
+\end{aligned}
+\end{aligned}\]
+
+We also know that by conservation of energy at \(r=\infty\), we can
+express the semi-major axis \(a\) in terms of the hyperbolic excess
+speed \(v_\infty\):
+
+\[\begin{aligned}
+\begin{aligned}
+    \frac{v_\infty^2}{2} &= \frac{\mu}{2a} \\
+    a &= \frac{\mu}{v_\infty^2}
+\end{aligned}
+\end{aligned}\]
+
+Substituting this into the expression for \(e\):
+
+\[\begin{aligned}
+\begin{aligned}
+    e &= \frac{r_p}{\mu/v_\infty^2} + 1 \\
+    &= \frac{r_p v_\infty^2}{\mu} + 1
+\end{aligned}
+\end{aligned}\]
+
+Such that we can equate the two expressions for \(\delta\):
+
+\[\begin{aligned}
+\begin{aligned}
+    2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right) &= 2 \sin^{-1} \left( \frac{1}{\frac{r_p v_\infty^2}{\mu} + 1} \right) \\
+    \frac{\Delta v_{eq}}{2 v_\infty} &= \frac{1}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+    \Delta v_{eq} &= \frac{2 v_\infty}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+\end{aligned}
+\end{aligned}\]
+
+This tells us that for any given \(v_\infty\), minimizing \(r_p\) will
+maximize \(\Delta v_{eq}\). The minimum value of \(r_p\) is \(r_s\), the
+radius of the planet. Solving for the \(v_\infty\) that corresponds to
+this minimum \(r_p\) requires taking the derivative of the
+\(\Delta v_{eq}\) expression with respect to \(v_\infty\) and looking
+for critical points:
+
+\[\begin{aligned}
+\begin{aligned}
+    \frac{\partial \Delta v_{eq}}{\partial v_\infty} &= \frac{2}{\frac{r_p v_\infty^2}{\mu} + 1} - \frac{2 v_\infty}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \frac{2 r_p v_\infty}{\mu} \\
+    &= \frac{\frac{2r_p v_\infty^2}{\mu} + 2 - \frac{4r_p v_\infty^2}{\mu}}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \\
+    &= \frac{2 - \frac{2r_p v_\infty^2}{\mu}}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \\
+\end{aligned}
+\end{aligned}\]
+
+We notice that the denominator is always positive, so we can simply set
+the numerator to zero:
+
+\[\begin{aligned}
+\begin{aligned}
+    2 - \frac{2r_p v_\infty^2}{\mu} &= 0 \\
+    \frac{2r_p v_\infty^2}{\mu} &= 2 \\
+    v_\infty^2 &= \frac{\mu}{r_p} \\
+    v_\infty &= \sqrt{\frac{\mu}{r_p}}
+\end{aligned}
+\end{aligned}\]
+
+This is an interesting result! We have found that the hyperbolic excess
+velocity for maximum \(\Delta v_{eq}\) is equal to the circular velocity
+at the surface of the planet. Solving for the corresponding value of
+\(\Delta v_{eq}\):
+
+\[\begin{aligned}
+\begin{aligned}
+    \Delta v_{eq} &= \frac{2 v_\infty}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+    &= \frac{2 \sqrt{\frac{\mu}{r_p}}}{\frac{r_p \left( \sqrt{\frac{\mu}{r_p}} \right)^2}{\mu} + 1} \\
+    &= \frac{2 \sqrt{\frac{\mu}{r_p}}}{\frac{\mu}{\mu} + 1} \\
+    &= \frac{2 \sqrt{\frac{\mu}{r_p}}}{2} \\
+    &= \sqrt{\frac{\mu}{r_p}}
+\end{aligned}
+\end{aligned}\]
+
+We can also solve for the corresponding values of \(\delta\):
+
+\[\begin{aligned}
+\begin{aligned}
+    \delta &= 2 \sin^{-1} \left( \frac{1}{e} \right) \\
+    &= 2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right) \\
+    &= 2 \sin^{-1} \left( \frac{\sqrt{\frac{\mu}{r_p}}}{2 \sqrt{\frac{\mu}{r_p}}} \right) \\
+    &= 2 \sin^{-1} \left( \frac{1}{2} \right) \\
+    &= 60^\circ \\
+\end{aligned}
+\end{aligned}\]
+
+And \(e\):
+
+\[\begin{aligned}
+\begin{aligned}
+    e &= \frac{r_p}{a} + 1 \\
+    &= \frac{r_p}{\frac{\mu}{v_\infty^2}} + 1 \\
+    &= \frac{r_p v_\infty^2}{\mu} + 1 \\
+    &= \frac{\mu}{\mu} + 1 \\
+    &= 2
+\end{aligned}
+\end{aligned}\]
+
+\section{Attitude Dynamics Past
+Problems}\label{attitude-dynamics-past-problems}
+
+\section{Orbit Determination Past
+Problem}\label{orbit-determination-past-problem}
+
+\end{document}

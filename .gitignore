@@ -1,0 +1,10 @@
+include
+lib
+bin
+.vscode
+Eigen
+*.out
+*.cfg
+__pycache__
+share
+.DS_Store

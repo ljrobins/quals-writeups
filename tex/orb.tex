@@ -1,0 +1,107 @@
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\dv}[1]{\dot{\v{#1}}}
+\newcommand{\ddv}[1]{\ddot{\v{#1}}}
+\newcommand{\uv}[1]{\hat{\v{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\section{Orbit Mechanics Past Problems}
+
+\subsection{Problem 1}
+
+\subsubsection{Problem statement}
+Consider a hyperbolic flyby of a planet
+
+\begin{enumerate}
+    \item Determine the values of the periapsis flyby radius $r_p$ and hyperbolic excess speed $v_\infty$ that yield the \textit{maximum possible} magnitude of the equivalent $\Delta v_{eq}$ for the spacecraft due to the flyby. Express your answer for $r_p$ in terms of the planet radius $r_s$; include the constraint that $r_p \geq r_s$.
+    \item Determine this maximum $\Delta v_{eq}$ in terms of $v_s$, the circular speed at the surface of the planet. Also determine the numerical values for the corresponding turn angle $\delta$ and the hyperbolic eccentricity $e$.
+\end{enumerate}
+
+\subsubsection{Solution}
+
+We know that the angle between the incoming and outgoing hyperbolic asymptotes is given by:
+
+\begin{align*}
+    \delta &= 2 \sin^{-1} \left( \frac{1}{e} \right) \\
+    &= 2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right)
+\end{align*}
+
+We'll use these two expressions for $\delta$ to solve for the conditions that maximize $\Delta v$. First, we have to find a way to introduce $r_p$ into the equation. We know that the distance from the attracting focus to the center of the hyperbola is given by:
+
+\begin{align*}
+    ae &= r_p + a \\
+    e &= \frac{r_p}{a} + 1
+\end{align*}
+
+We also know that by conservation of energy at $r=\infty$, we can express the semi-major axis $a$ in terms of the hyperbolic excess speed $v_\infty$:
+
+\begin{align*}
+    \frac{v_\infty^2}{2} &= \frac{\mu}{2a} \\
+    a &= \frac{\mu}{v_\infty^2}
+\end{align*}
+
+Substituting this into the expression for $e$:
+
+\begin{align*}
+    e &= \frac{r_p}{\mu/v_\infty^2} + 1 \\
+    &= \frac{r_p v_\infty^2}{\mu} + 1
+\end{align*}
+
+Such that we can equate the two expressions for $\delta$:
+
+\begin{align*}
+    2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right) &= 2 \sin^{-1} \left( \frac{1}{\frac{r_p v_\infty^2}{\mu} + 1} \right) \\
+    \frac{\Delta v_{eq}}{2 v_\infty} &= \frac{1}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+    \Delta v_{eq} &= \frac{2 v_\infty}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+\end{align*}
+
+This tells us that for any given $v_\infty$, minimizing $r_p$ will maximize $\Delta v_{eq}$. The minimum value of $r_p$ is $r_s$, the radius of the planet. Solving for the $v_\infty$ that corresponds to this minimum $r_p$ requires taking the derivative of the $\Delta v_{eq}$ expression with respect to $v_\infty$ and looking for critical points:
+
+\begin{align*}
+    \frac{\partial \Delta v_{eq}}{\partial v_\infty} &= \frac{2}{\frac{r_p v_\infty^2}{\mu} + 1} - \frac{2 v_\infty}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \frac{2 r_p v_\infty}{\mu} \\
+    &= \frac{\frac{2r_p v_\infty^2}{\mu} + 2 - \frac{4r_p v_\infty^2}{\mu}}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \\
+    &= \frac{2 - \frac{2r_p v_\infty^2}{\mu}}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \\
+\end{align*}
+
+We notice that the denominator is always positive, so we can simply set the numerator to zero:
+
+\begin{align*}
+    2 - \frac{2r_p v_\infty^2}{\mu} &= 0 \\
+    \frac{2r_p v_\infty^2}{\mu} &= 2 \\
+    v_\infty^2 &= \frac{\mu}{r_p} \\
+    v_\infty &= \sqrt{\frac{\mu}{r_p}}
+\end{align*}
+
+This is an interesting result! We have found that the hyperbolic excess velocity for maximum $\Delta v_{eq}$ is equal to the circular velocity at the surface of the planet. Solving for the corresponding value of $\Delta v_{eq}$:
+
+\begin{align*}
+    \Delta v_{eq} &= \frac{2 v_\infty}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+    &= \frac{2 \sqrt{\frac{\mu}{r_p}}}{\frac{r_p \left( \sqrt{\frac{\mu}{r_p}} \right)^2}{\mu} + 1} \\
+    &= \frac{2 \sqrt{\frac{\mu}{r_p}}}{\frac{\mu}{\mu} + 1} \\
+    &= \frac{2 \sqrt{\frac{\mu}{r_p}}}{2} \\
+    &= \sqrt{\frac{\mu}{r_p}}
+\end{align*}
+
+We can also solve for the corresponding values of $\delta$:
+
+\begin{align*}
+    \delta &= 2 \sin^{-1} \left( \frac{1}{e} \right) \\
+    &= 2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right) \\
+    &= 2 \sin^{-1} \left( \frac{\sqrt{\frac{\mu}{r_p}}}{2 \sqrt{\frac{\mu}{r_p}}} \right) \\
+    &= 2 \sin^{-1} \left( \frac{1}{2} \right) \\
+    &= 60^\circ \\
+\end{align*}
+
+And $e$:
+
+\begin{align*}
+    e &= \frac{r_p}{a} + 1 \\
+    &= \frac{r_p}{\frac{\mu}{v_\infty^2}} + 1 \\
+    &= \frac{r_p v_\infty^2}{\mu} + 1 \\
+    &= \frac{\mu}{\mu} + 1 \\
+    &= 2
+\end{align*}
+
+\end{document}

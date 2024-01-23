@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Astrodynamics and Space Applications Qualifying Exam Notes &#8212; ASA Quals  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Satellite Navigation Past Problems" href="gps.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="astrodynamics-and-space-applications-qualifying-exam-notes">
+<h1>Astrodynamics and Space Applications Qualifying Exam Notes<a class="headerlink" href="#astrodynamics-and-space-applications-qualifying-exam-notes" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gps.html">Satellite Navigation Past Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orb.html">Orbit Mechanics Past Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-1">Problem 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement">Problem statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orb.html#solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problem</a></li>
+</ul>
+</div>
+</section>
+<section id="satellite-navigation-past-problems">
+<h1>Satellite Navigation Past Problems<a class="headerlink" href="#satellite-navigation-past-problems" title="Link to this heading">¶</a></h1>
+</section>
+<section id="orbit-mechanics-past-problems">
+<h1>Orbit Mechanics Past Problems<a class="headerlink" href="#orbit-mechanics-past-problems" title="Link to this heading">¶</a></h1>
+<section id="problem-1">
+<h2>Problem 1<a class="headerlink" href="#problem-1" title="Link to this heading">¶</a></h2>
+<section id="problem-statement">
+<h3>Problem statement<a class="headerlink" href="#problem-statement" title="Link to this heading">¶</a></h3>
+<p>Consider a hyperbolic flyby of a planet</p>
+<ol class="arabic simple">
+<li><p>Determine the values of the periapsis flyby radius <span class="math notranslate nohighlight">\(r_p\)</span> and
+hyperbolic excess speed <span class="math notranslate nohighlight">\(v_\infty\)</span> that yield the <em>maximum
+possible</em> magnitude of the equivalent <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span> for the
+spacecraft due to the flyby. Express your answer for <span class="math notranslate nohighlight">\(r_p\)</span> in
+terms of the planet radius <span class="math notranslate nohighlight">\(r_s\)</span>; include the constraint that
+<span class="math notranslate nohighlight">\(r_p \geq r_s\)</span>.</p></li>
+<li><p>Determine this maximum <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span> in terms of <span class="math notranslate nohighlight">\(v_s\)</span>,
+the circular speed at the surface of the planet. Also determine the
+numerical values for the corresponding turn angle <span class="math notranslate nohighlight">\(\delta\)</span> and
+the hyperbolic eccentricity <span class="math notranslate nohighlight">\(e\)</span>.</p></li>
+</ol>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h3>
+<p>We know that the angle between the incoming and outgoing hyperbolic
+asymptotes is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \delta &amp;= 2 \sin^{-1} \left( \frac{1}{e} \right) \\
+    &amp;= 2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right)
+\end{aligned}\end{split}\]</div>
+<p>We’ll use these two expressions for <span class="math notranslate nohighlight">\(\delta\)</span> to solve for the
+conditions that maximize <span class="math notranslate nohighlight">\(\Delta v\)</span>. First, we have to find a way
+to introduce <span class="math notranslate nohighlight">\(r_p\)</span> into the equation. We know that the distance
+from the attracting focus to the center of the hyperbola is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    ae &amp;= r_p + a \\
+    e &amp;= \frac{r_p}{a} + 1
+\end{aligned}\end{split}\]</div>
+<p>We also know that by conservation of energy at <span class="math notranslate nohighlight">\(r=\infty\)</span>, we can
+express the semi-major axis <span class="math notranslate nohighlight">\(a\)</span> in terms of the hyperbolic excess
+speed <span class="math notranslate nohighlight">\(v_\infty\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{v_\infty^2}{2} &amp;= \frac{\mu}{2a} \\
+    a &amp;= \frac{\mu}{v_\infty^2}
+\end{aligned}\end{split}\]</div>
+<p>Substituting this into the expression for <span class="math notranslate nohighlight">\(e\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    e &amp;= \frac{r_p}{\mu/v_\infty^2} + 1 \\
+    &amp;= \frac{r_p v_\infty^2}{\mu} + 1
+\end{aligned}\end{split}\]</div>
+<p>Such that we can equate the two expressions for <span class="math notranslate nohighlight">\(\delta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right) &amp;= 2 \sin^{-1} \left( \frac{1}{\frac{r_p v_\infty^2}{\mu} + 1} \right) \\
+    \frac{\Delta v_{eq}}{2 v_\infty} &amp;= \frac{1}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+    \Delta v_{eq} &amp;= \frac{2 v_\infty}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+\end{aligned}\end{split}\]</div>
+<p>This tells us that for any given <span class="math notranslate nohighlight">\(v_\infty\)</span>, minimizing
+<span class="math notranslate nohighlight">\(r_p\)</span> will maximize <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span>. The minimum value of
+<span class="math notranslate nohighlight">\(r_p\)</span> is <span class="math notranslate nohighlight">\(r_s\)</span>, the radius of the planet. Solving for the
+<span class="math notranslate nohighlight">\(v_\infty\)</span> that corresponds to this minimum <span class="math notranslate nohighlight">\(r_p\)</span> requires
+taking the derivative of the <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span> expression with
+respect to <span class="math notranslate nohighlight">\(v_\infty\)</span> and looking for critical points:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\partial \Delta v_{eq}}{\partial v_\infty} &amp;= \frac{2}{\frac{r_p v_\infty^2}{\mu} + 1} - \frac{2 v_\infty}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \frac{2 r_p v_\infty}{\mu} \\
+    &amp;= \frac{\frac{2r_p v_\infty^2}{\mu} + 2 - \frac{4r_p v_\infty^2}{\mu}}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \\
+    &amp;= \frac{2 - \frac{2r_p v_\infty^2}{\mu}}{\left( \frac{r_p v_\infty^2}{\mu} + 1 \right)^2} \\
+\end{aligned}\end{split}\]</div>
+<p>We notice that the denominator is always positive, so we can simply set
+the numerator to zero:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    2 - \frac{2r_p v_\infty^2}{\mu} &amp;= 0 \\
+    \frac{2r_p v_\infty^2}{\mu} &amp;= 2 \\
+    v_\infty^2 &amp;= \frac{\mu}{r_p} \\
+    v_\infty &amp;= \sqrt{\frac{\mu}{r_p}}
+\end{aligned}\end{split}\]</div>
+<p>This is an interesting result! We have found that the hyperbolic excess
+velocity for maximum <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span> is equal to the circular
+velocity at the surface of the planet. Solving for the corresponding
+value of <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \Delta v_{eq} &amp;= \frac{2 v_\infty}{\frac{r_p v_\infty^2}{\mu} + 1} \\
+    &amp;= \frac{2 \sqrt{\frac{\mu}{r_p}}}{\frac{r_p \left( \sqrt{\frac{\mu}{r_p}} \right)^2}{\mu} + 1} \\
+    &amp;= \frac{2 \sqrt{\frac{\mu}{r_p}}}{\frac{\mu}{\mu} + 1} \\
+    &amp;= \frac{2 \sqrt{\frac{\mu}{r_p}}}{2} \\
+    &amp;= \sqrt{\frac{\mu}{r_p}}
+\end{aligned}\end{split}\]</div>
+<p>We can also solve for the corresponding values of <span class="math notranslate nohighlight">\(\delta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \delta &amp;= 2 \sin^{-1} \left( \frac{1}{e} \right) \\
+    &amp;= 2 \sin^{-1} \left( \frac{\Delta v_{eq}}{2 v_\infty} \right) \\
+    &amp;= 2 \sin^{-1} \left( \frac{\sqrt{\frac{\mu}{r_p}}}{2 \sqrt{\frac{\mu}{r_p}}} \right) \\
+    &amp;= 2 \sin^{-1} \left( \frac{1}{2} \right) \\
+    &amp;= 60^\circ \\
+\end{aligned}\end{split}\]</div>
+<p>And <span class="math notranslate nohighlight">\(e\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    e &amp;= \frac{r_p}{a} + 1 \\
+    &amp;= \frac{r_p}{\frac{\mu}{v_\infty^2}} + 1 \\
+    &amp;= \frac{r_p v_\infty^2}{\mu} + 1 \\
+    &amp;= \frac{\mu}{\mu} + 1 \\
+    &amp;= 2
+\end{aligned}\end{split}\]</div>
+</section>
+</section>
+</section>
+<section id="attitude-dynamics-past-problems">
+<h1>Attitude Dynamics Past Problems<a class="headerlink" href="#attitude-dynamics-past-problems" title="Link to this heading">¶</a></h1>
+</section>
+<section id="orbit-determination-past-problem">
+<h1>Orbit Determination Past Problem<a class="headerlink" href="#orbit-determination-past-problem" title="Link to this heading">¶</a></h1>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">ASA Quals</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gps.html">Satellite Navigation Past Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orb.html">Orbit Mechanics Past Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problem</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="gps.html" title="next chapter">Satellite Navigation Past Problems</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Liam Robinson.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
