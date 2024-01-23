@@ -19,7 +19,7 @@ Assume that the orbital elements for an Earth orbit are given.
    orbits.
 
 #. If the orbit is circular, let :math:`e=0.0`, :math:`i=55^\circ`,
-   :math:`Omega_i=0^\circ`, :math:`\Omega_f=45^\circ`, where :math:`o`
+   :math:`\Omega_i=0^\circ`, :math:`\Omega_f=45^\circ`, where :math:`o`
    reflects the original orbit and :math:`f` indicates a value in the
    final orbit. In the relationships from (a), demonstrate that the
    maneuver location is defined as :math:`\theta_o = 103.36^\circ`. What
@@ -35,8 +35,75 @@ We can form a spherical triangle with side lengths
 :math:`\Omega_f - \Omega_o` along the equator, and then :math:`\theta_i`
 extending upwards from the left at an angle of :math:`i_o`, and
 :math:`\theta_f` extending upwards from the right at an angle of
-:math:`180^\circ-i_o`. This yields an interior angle at the intersection
-point at the top of the triangle of :math:`180^\circ-`
+:math:`180^\circ-i_o`. The angle at the top of the triangle is the angle
+between the initial and final position vectors, which is the angle of
+the required :math:`\Delta v`. We can then use the spherical law of
+cosines to solve for this angle:
+
+.. math::
+
+   \begin{aligned}
+       \cos a &= \cos b \cos c + \sin b \sin c \cos A \\
+       \cos A &= - \cos b \cos c + \sin b \sin c \cos a \\
+   \end{aligned}
+
+Where the lowercase letters are the side lengths and the uppercase
+letters are the interior angles. Rephrased for our problem, we find the
+third interior angle :math:`a_3`:
+
+.. math::
+
+   \begin{aligned}
+       \cos a_3 &= - \cos i_o \cos (180^\circ - i_f) + \sin i_o \sin (180^\circ - i_f) \cos(\Omega_f - \Omega_o) \\
+       &= \cos^2 55^\circ + \sin^2 55^\circ \cos(45^\circ) \\
+       &= \cos^2 55^\circ + \frac{\sqrt{2}}{2} \sin^2 55^\circ \\
+       a_3 &= \cos^{-1} \left( \cos^2 55^\circ + \frac{\sqrt{2}}{2} \sin^2 55^\circ \right) \\
+       &\approx 37^\circ \\
+   \end{aligned}
+
+We can then use the spherical law of sines to solve for
+:math:`\theta_o`:
+
+.. math::
+
+   \begin{aligned}
+       \frac{\sin\theta_o}{\sin i_f} &= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+       \sin\theta_o &= \frac{\sin i_f \sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+       \theta_o &= 103.36^\circ \\
+   \end{aligned}
+
+Solving for :math:`\theta_f` similarly:
+
+.. math::
+
+   \begin{aligned}
+       \frac{\sin\theta_f}{\sin i_o} &= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+       \sin\theta_f &= \frac{\sin i_o \sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+       \theta_f &= 76.64^\circ \\
+   \end{aligned}
+
+We can then find the magnitude of the required :math:`\Delta v` using
+the law of cosines by recognizing that the magnitude of the velocity is
+the same for both the initial and final orbits:
+
+.. math::
+
+   \begin{aligned}
+       v_c &= \sqrt{\frac{\mu_\oplus}{r}} \\
+       &= \sqrt{\frac{\mu_\oplus}{3R_\oplus}} \\
+   \end{aligned}
+
+And the magnitude of the required :math:`\Delta v` is given by:
+
+.. math::
+
+   \begin{aligned}
+       \frac{\Delta v}{2 v_c} &= \sin\left( \frac{a_3}{2} \right) \\
+       &= \sin\left( \frac{37^\circ}{2} \right) \\
+       &\approx 0.30 \\
+       \Delta v &\approx 0.60 v_c \\
+       &\approx 0.60 \sqrt{\frac{\mu_\oplus}{3R_\oplus}} \\
+   \end{aligned}
 
 Problem 0
 ---------

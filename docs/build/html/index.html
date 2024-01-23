@@ -80,7 +80,7 @@ that, if solved, will identify the location. i.e. the argument of
 latitude, for the location of the maneuver in the original and final
 orbits.</p></li>
 <li><p>If the orbit is circular, let <span class="math notranslate nohighlight">\(e=0.0\)</span>, <span class="math notranslate nohighlight">\(i=55^\circ\)</span>,
-<span class="math notranslate nohighlight">\(Omega_i=0^\circ\)</span>, <span class="math notranslate nohighlight">\(\Omega_f=45^\circ\)</span>, where <span class="math notranslate nohighlight">\(o\)</span>
+<span class="math notranslate nohighlight">\(\Omega_i=0^\circ\)</span>, <span class="math notranslate nohighlight">\(\Omega_f=45^\circ\)</span>, where <span class="math notranslate nohighlight">\(o\)</span>
 reflects the original orbit and <span class="math notranslate nohighlight">\(f\)</span> indicates a value in the
 final orbit. In the relationships from (a), demonstrate that the
 maneuver location is defined as <span class="math notranslate nohighlight">\(\theta_o = 103.36^\circ\)</span>. What
@@ -95,8 +95,58 @@ the required <span class="math notranslate nohighlight">\(\Delta v\)</span>.</p>
 <span class="math notranslate nohighlight">\(\Omega_f - \Omega_o\)</span> along the equator, and then <span class="math notranslate nohighlight">\(\theta_i\)</span>
 extending upwards from the left at an angle of <span class="math notranslate nohighlight">\(i_o\)</span>, and
 <span class="math notranslate nohighlight">\(\theta_f\)</span> extending upwards from the right at an angle of
-<span class="math notranslate nohighlight">\(180^\circ-i_o\)</span>. This yields an interior angle at the intersection
-point at the top of the triangle of <span class="math notranslate nohighlight">\(180^\circ-\)</span></p>
+<span class="math notranslate nohighlight">\(180^\circ-i_o\)</span>. The angle at the top of the triangle is the angle
+between the initial and final position vectors, which is the angle of
+the required <span class="math notranslate nohighlight">\(\Delta v\)</span>. We can then use the spherical law of
+cosines to solve for this angle:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \cos a &amp;= \cos b \cos c + \sin b \sin c \cos A \\
+    \cos A &amp;= - \cos b \cos c + \sin b \sin c \cos a \\
+\end{aligned}\end{split}\]</div>
+<p>Where the lowercase letters are the side lengths and the uppercase
+letters are the interior angles. Rephrased for our problem, we find the
+third interior angle <span class="math notranslate nohighlight">\(a_3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \cos a_3 &amp;= - \cos i_o \cos (180^\circ - i_f) + \sin i_o \sin (180^\circ - i_f) \cos(\Omega_f - \Omega_o) \\
+    &amp;= \cos^2 55^\circ + \sin^2 55^\circ \cos(45^\circ) \\
+    &amp;= \cos^2 55^\circ + \frac{\sqrt{2}}{2} \sin^2 55^\circ \\
+    a_3 &amp;= \cos^{-1} \left( \cos^2 55^\circ + \frac{\sqrt{2}}{2} \sin^2 55^\circ \right) \\
+    &amp;\approx 37^\circ \\
+\end{aligned}\end{split}\]</div>
+<p>We can then use the spherical law of sines to solve for
+<span class="math notranslate nohighlight">\(\theta_o\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\sin\theta_o}{\sin i_f} &amp;= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+    \sin\theta_o &amp;= \frac{\sin i_f \sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+    \theta_o &amp;= 103.36^\circ \\
+\end{aligned}\end{split}\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(\theta_f\)</span> similarly:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\sin\theta_f}{\sin i_o} &amp;= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+    \sin\theta_f &amp;= \frac{\sin i_o \sin(\Omega_f - \Omega_o)}{\sin a_3} \\
+    \theta_f &amp;= 76.64^\circ \\
+\end{aligned}\end{split}\]</div>
+<p>We can then find the magnitude of the required <span class="math notranslate nohighlight">\(\Delta v\)</span> using
+the law of cosines by recognizing that the magnitude of the velocity is
+the same for both the initial and final orbits:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_c &amp;= \sqrt{\frac{\mu_\oplus}{r}} \\
+    &amp;= \sqrt{\frac{\mu_\oplus}{3R_\oplus}} \\
+\end{aligned}\end{split}\]</div>
+<p>And the magnitude of the required <span class="math notranslate nohighlight">\(\Delta v\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\Delta v}{2 v_c} &amp;= \sin\left( \frac{a_3}{2} \right) \\
+    &amp;= \sin\left( \frac{37^\circ}{2} \right) \\
+    &amp;\approx 0.30 \\
+    \Delta v &amp;\approx 0.60 v_c \\
+    &amp;\approx 0.60 \sqrt{\frac{\mu_\oplus}{3R_\oplus}} \\
+\end{aligned}\end{split}\]</div>
 </section>
 </section>
 <section id="problem-0">
