@@ -69,8 +69,13 @@ We can then use the spherical law of sines to solve for
    \begin{aligned}
        \frac{\sin\theta_o}{\sin i_f} &= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} \\
        \sin\theta_o &= \frac{\sin i_f \sin(\Omega_f - \Omega_o)}{\sin a_3} \\
-       \theta_o &= 103.36^\circ \\
+       \theta_o &= 76.64^\circ \\
    \end{aligned}
+
+Notice that the arcsin is also solved by
+:math:`\theta_o = 180^\circ - 76.64^\circ = 103.36^\circ`. We choose
+this solution to yield an intersection in the first half of the initial
+orbit.
 
 Solving for :math:`\theta_f` similarly:
 
@@ -103,6 +108,7 @@ And the magnitude of the required :math:`\Delta v` is given by:
        &\approx 0.30 \\
        \Delta v &\approx 0.60 v_c \\
        &\approx 0.60 \sqrt{\frac{\mu_\oplus}{3R_\oplus}} \\
+       &\approx 2.86 \: [km/s] \\
    \end{aligned}
 
 Problem 0
