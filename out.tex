@@ -80,9 +80,234 @@ Problems}\label{satellite-navigation-past-problems}
 \section{Orbit Mechanics Past
 Problems}\label{orbit-mechanics-past-problems}
 
-\subsection{Fall 2023}\label{fall-2023}
+\subsection{Spring 2021}\label{spring-2021}
 
 \subsubsection{Problem Statement}\label{problem-statement}
+
+Assume a system of four centrobaric bodies that can all move in any
+spatial dimension.
+
+\begin{enumerate}
+\tightlist
+\item
+  From first principles, derive the vector differential equation
+  governing relative motion. It is not possible to solve the
+  corresponding scalar equations of motion. Why not?
+\item
+  Derive expressions for the 10 known integrals of motion associated
+  with this vector differential equation for the 4-body system. What is
+  the physical significance of each?
+\item
+  The motion of the Moon relative to the Earth, and influenced by the
+  Sun, is one of the most challenging problems in orbital mechanics.
+  Given the results in (a) and (b), discuss why the first statement is
+  true.
+\end{enumerate}
+
+\subsubsection{Solution}\label{solution}
+
+The vector from the \(i\)th body to the \(j\)th body is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    \mathbf{r}_{ij} &= \mathbf{r}_j - \mathbf{r}_i \\
+\end{aligned}
+\end{aligned}\]
+
+Taking two derivatives with respect to time:
+
+\[\begin{aligned}
+\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &= \ddot{\mathbf{r}}_j - \ddot{\mathbf{r}}_i \\
+\end{aligned}
+\end{aligned}\]
+
+The acceleration of the \(i\)th body is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    \ddot{\mathbf{r}}_i &= - \sum_{k\neq i} \frac{G m_k}{\left| \mathbf{r}_{ki} \right|^3} \mathbf{r}_{ki} \\
+\end{aligned}
+\end{aligned}\]
+
+The acceleration of the \(j\)th body is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    \ddot{\mathbf{r}}_j &= -\sum_{k\neq j} \frac{G m_k}{\left| \mathbf{r}_{kj} \right|^3} \mathbf{r}_{kj} \\
+\end{aligned}
+\end{aligned}\]
+
+Such that the relative acceleration of the \(i\)th body with respect to
+the \(j\)th body is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &= -\sum_{k\neq j} \frac{G m_k}{\left| \mathbf{r}_{kj} \right|^3} \mathbf{r}_{kj} + \sum_{k\neq i} \frac{G m_k}{\left| \mathbf{r}_{ki} \right|^3} \mathbf{r}_{ki} \\
+\end{aligned}
+\end{aligned}\]
+
+We can pull out the \(k=i\) in the first sum and \(k=j\) in the second
+sum:
+
+\[\begin{aligned}
+\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &= -\frac{G m_i}{\left| \mathbf{r}_{ji} \right|^3} \mathbf{r}_{ji} + \frac{G m_j}{\left| \mathbf{r}_{ij} \right|^3} \mathbf{r}_{ij} -\sum_{k\neq j, k\neq i} \frac{G m_k}{\left| \mathbf{r}_{kj} \right|^3} \mathbf{r}_{kj} + \sum_{k\neq i, k\neq j} \frac{G m_k}{\left| \mathbf{r}_{ki} \right|^3} \mathbf{r}_{ki} \\
+\end{aligned}
+\end{aligned}\]
+
+Combining the first two terms and the last two terms:
+
+\[\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &= -\frac{G (m_i + m_j)}{\left| \mathbf{r}_{ji} \right|^3} \mathbf{r}_{ji} - \sum_{k\neq j, k\neq i} G m_k \left(\frac{\mathbf{r}_{kj}}{{\left| \mathbf{r}_{kj} \right|^3}} - \frac{\mathbf{r}_{ki}}{{\left| \mathbf{r}_{ki} \right|^3}}\right)
+\end{aligned}\]
+
+Which in the case of the 4-body problem, we take the \(i=1\) and
+\(j=2\), \(k \in [3,4]\):
+
+\[\begin{aligned}
+    \ddot{\mathbf{r}}_{12} &= -\frac{G (m_1 + m_2)}{\left| \mathbf{r}_{21} \right|^3} \mathbf{r}_{21} - \sum_{k=3}^4 G m_k \left(\frac{\mathbf{r}_{k2}}{{\left| \mathbf{r}_{k2} \right|^3}} - \frac{\mathbf{r}_{k1}}{{\left| \mathbf{r}_{k1} \right|^3}}\right)
+\end{aligned}\]
+
+Deriving the 10 known integrals of motion begins by first noting that
+the sum of all forces on the system is zero:
+
+\[\sum_i F = \sum_i \sum_{j \neq i} \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right)\]
+
+Because
+\(F_{sys} = m_{sys} a_{sys} = \sum_i m_i \ddot{\mathbf{r}}_i = 0\) for
+the system as a whole, we can state:
+
+\[\int \sum_i m_i \ddot{\mathbf{r}}_i \: dt = m_{sys} v_{sys} = \sum_i m_i \dot{\mathbf{r}}_i\]
+
+Integrating once more:
+
+\[\int \sum_i m_i \dot{\mathbf{r}}_i \: dt = m_{sys} v_{sys} t + m_{sys} r_{sys}  = \sum_i m_i \mathbf{r}_i\]
+
+These two constants of integration \(\mathbf{r}_{sys}\) and
+\(\mathbf{v}_{sys}\) are the first two integrals of motion (making up
+six scalar equations). Specifically, they are solved for by dividing by
+\(m_{sys}\):
+
+\[\begin{aligned}
+\begin{aligned}
+    \mathbf{r}_{sys} &= \frac{1}{m_{sys}} \sum_i m_i \mathbf{r}_i \\
+    \mathbf{v}_{sys} &= \frac{1}{m_{sys}} \sum_i m_i \dot{\mathbf{r}}_i \\
+\end{aligned}
+\end{aligned}\]
+
+The next three integrals of motion are found by taking the summation of
+the angular momentum of the system. We must develop this by taking the
+sum of the torques on members of the system. First, we note that the
+torque on the \(i\)th body is given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    \mathbf{\tau}_i &= \mathbf{r}_i \times \mathbf{F}_i \\
+    &= \mathbf{r}_i \times \sum_{j \neq i} \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right) \\
+\end{aligned}
+\end{aligned}\]
+
+Such that the total torque on the system is:
+
+\[\begin{aligned}
+\begin{aligned}
+    \sum_i \mathbf{\tau}_i &= \sum_i \mathbf{r}_i \times \sum_{j \neq i} \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right) \\
+    &= \sum_i \sum_{j \neq i} \mathbf{r}_i \times \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right) \\
+\end{aligned}
+\end{aligned}\]
+
+We then note that
+\(\mathbf{r}_i \times \mathbf{r}_{ji} = -\mathbf{r}_{ji} \times \mathbf{r}_i\),
+such that each term in the summation is annihilated by its counterpart.
+This leaves us with:
+
+\[\begin{aligned}
+\begin{aligned}
+    \sum_i \mathbf{\tau}_i &= \mathbf{0} \\
+    &= \sum_i \mathbf{r}_i \times m_i \ddot{\mathbf{r}}_i
+\end{aligned}
+\end{aligned}\]
+
+We notice that this summation expansion of the torque is the derivative
+of another quantity:
+
+\[\begin{aligned}
+\begin{aligned}
+    \sum_i \mathbf{r}_i \times m_i \ddot{\mathbf{r}}_i &= \frac{d}{dt} \left( \sum_i \mathbf{r}_i \times m_i \dot{\mathbf{r}}_i \right) \\
+\end{aligned}
+\end{aligned}\]
+
+Which implies that the integral of the derived quantity is an integral
+of motion:
+
+\[\begin{aligned}
+\begin{aligned}
+    \sum_i \mathbf{r}_i \times m_i \dot{\mathbf{r}}_i &= \mathbf{h}_{sys} \\
+\end{aligned}
+\end{aligned}\]
+
+Finally, we enforce conservation of energy by first finding the
+potential function whose gradient is the force on the system:
+
+\[\begin{aligned}
+\begin{aligned}
+    U &= \frac{1}{2} G \sum_i \sum_{j \neq i} \frac{m_i m_j}{r_{ji}} \\
+\end{aligned}
+\end{aligned}\]
+
+Such that the gradient of the potential function is:
+
+\[\begin{aligned}
+\begin{aligned}
+    \nabla U &= -G \sum_i \sum_{j \neq i} \frac{m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \\
+    &= \sum_i m_i \ddot{\mathbf{r}} \\
+\end{aligned}
+\end{aligned}\]
+
+Notice that we can express:
+
+\[\begin{aligned}
+\begin{aligned}
+    \sum_i \nabla U &= \sum_i\frac{d U}{d \mathbf{r}_i} \\
+    &= \sum_i m_i \ddot{\mathbf{r}}
+\end{aligned}
+\end{aligned}\]
+
+If we multiply both sides by \(\dot{\mathbf{r}}\):
+
+\[\begin{aligned}
+\begin{aligned}
+    \sum_i m_i \dot{\mathbf{r}}_i \cdot \ddot{\mathbf{r}}_i &= \sum_i\frac{d U}{d \mathbf{r}_i} \frac{d \mathbf{r}_i}{dt} \\
+    &= \frac{d U}{dt} \\
+\end{aligned}
+\end{aligned}\]
+
+We then notice that the left side can also be expressed as the
+derivative of a quantity:
+
+\[\begin{aligned}
+\begin{aligned}
+    \frac{dU}{dt} &= \frac{d}{dt} \left( \sum_i m_i \dot{r}_i^2 \right) \\
+    U = \sum_i m_i \dot{r}_i^2 + C_2 \\
+\end{aligned}
+\end{aligned}\]
+
+Where \(C_2\) is the total system energy. Plugging in our particle
+system representation of \(U\), we find that the total system energy is
+given by:
+
+\[\begin{aligned}
+\begin{aligned}
+    C_2 &= \sum_i m_i \dot{r}_i^2 - \frac{1}{2} G \sum_i \sum_{j \neq i} \frac{m_i m_j}{r_{ji}} \\
+\end{aligned}
+\end{aligned}\]
+
+\subsection{Fall 2023}\label{fall-2023}
+
+Note that this problem was also given in Fall 2021.
+
+\subsubsection{Problem Statement}\label{problem-statement-1}
 
 Assuming Keplerian motion, several important types of orbital maneuvers
 are noncoplanar. For example, the capability to change the ascending
@@ -109,7 +334,7 @@ Assume that the orbital elements for an Earth orbit are given.
   required \(\Delta v\).
 \end{enumerate}
 
-\subsubsection{Solution}\label{solution}
+\subsubsection{Solution}\label{solution-1}
 
 We can form a spherical triangle with side lengths
 \(\Omega_f - \Omega_o\) along the equator, and then \(\theta_i\)
@@ -189,9 +414,14 @@ And the magnitude of the required \(\Delta v\) is given by:
 \end{aligned}
 \end{aligned}\]
 
+This concludes the derivation of the ten integrals of motion for the
+n-body problem. The first six scalars are the initial position and
+velocity of the system, and the next three are the angular momentum of
+the system. The final scalar is the total energy of the system.
+
 \subsection{Problem 0}\label{problem-0}
 
-\subsubsection{Problem Statement}\label{problem-statement-1}
+\subsubsection{Problem Statement}\label{problem-statement-2}
 
 In Keplerian mechanics, several important types of orbital maneuvers are
 noncoplanar. For example, the capability to change both the ascending
@@ -213,7 +443,7 @@ indicates a value in the final orbit.
   the magnitude of the required single impulse to accomplish the goal.
 \end{enumerate}
 
-\subsubsection{Solution}\label{solution-1}
+\subsubsection{Solution}\label{solution-2}
 
 We'll define the ``location'' of the maneuver in the initial and final
 orbits with the argument of latitude \(\theta_o\) and \(\theta_f\), the
@@ -275,7 +505,7 @@ And similarly for \(\theta_f\):
     \frac{\sin\theta_f}{\sin i_o} &= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} = 1 \\
     \sin\theta_f &= \sin 30^\circ \frac{\sin(60^\circ)}{\sin 76^\circ} \\
     &\approx 0.63 \\
-    \theta_f &\approx 40^\circ
+    \theta_f &\approx 26.5^\circ
 \end{aligned}
 \end{aligned}\]
 
@@ -303,9 +533,9 @@ And the magnitude of the required impulse is given by:
 \end{aligned}
 \end{aligned}\]
 
-\subsection{Problem 1}\label{problem-1}
+\subsection{Fall 2019}\label{fall-2019}
 
-\subsubsection{Problem Statement}\label{problem-statement-2}
+\subsubsection{Problem Statement}\label{problem-statement-3}
 
 Consider a hyperbolic flyby of a planet
 
@@ -325,7 +555,7 @@ Consider a hyperbolic flyby of a planet
   hyperbolic eccentricity \(e\).
 \end{enumerate}
 
-\subsubsection{Solution}\label{solution-2}
+\subsubsection{Solution}\label{solution-3}
 
 We know that the angle between the incoming and outgoing hyperbolic
 asymptotes is given by:

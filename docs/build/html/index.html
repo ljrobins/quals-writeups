@@ -39,19 +39,24 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gps.html">Satellite Navigation Past Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="orb.html">Orbit Mechanics Past Problems</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="orb.html#fall-2023">Fall 2023</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#spring-2021">Spring 2021</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement">Problem Statement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#solution">Solution</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-0">Problem 0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#fall-2023">Fall 2023</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement-1">Problem Statement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#solution-1">Solution</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-1">Problem 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#problem-0">Problem 0</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement-2">Problem Statement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orb.html#solution-2">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="orb.html#fall-2019">Fall 2019</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="orb.html#problem-statement-3">Problem Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orb.html#solution-3">Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -66,10 +71,173 @@
 </section>
 <section id="orbit-mechanics-past-problems">
 <h1>Orbit Mechanics Past Problems<a class="headerlink" href="#orbit-mechanics-past-problems" title="Link to this heading">¶</a></h1>
-<section id="fall-2023">
-<h2>Fall 2023<a class="headerlink" href="#fall-2023" title="Link to this heading">¶</a></h2>
+<section id="spring-2021">
+<h2>Spring 2021<a class="headerlink" href="#spring-2021" title="Link to this heading">¶</a></h2>
 <section id="problem-statement">
 <h3>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading">¶</a></h3>
+<p>Assume a system of four centrobaric bodies that can all move in any
+spatial dimension.</p>
+<ol class="arabic simple">
+<li><p>From first principles, derive the vector differential equation
+governing relative motion. It is not possible to solve the
+corresponding scalar equations of motion. Why not?</p></li>
+<li><p>Derive expressions for the 10 known integrals of motion associated
+with this vector differential equation for the 4-body system. What is
+the physical significance of each?</p></li>
+<li><p>The motion of the Moon relative to the Earth, and influenced by the
+Sun, is one of the most challenging problems in orbital mechanics.
+Given the results in (a) and (b), discuss why the first statement is
+true.</p></li>
+</ol>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h3>
+<p>The vector from the <span class="math notranslate nohighlight">\(i\)</span>th body to the <span class="math notranslate nohighlight">\(j\)</span>th body is
+given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathbf{r}_{ij} &amp;= \mathbf{r}_j - \mathbf{r}_i \\
+\end{aligned}\end{split}\]</div>
+<p>Taking two derivatives with respect to time:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &amp;= \ddot{\mathbf{r}}_j - \ddot{\mathbf{r}}_i \\
+\end{aligned}\end{split}\]</div>
+<p>The acceleration of the <span class="math notranslate nohighlight">\(i\)</span>th body is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \ddot{\mathbf{r}}_i &amp;= - \sum_{k\neq i} \frac{G m_k}{\left| \mathbf{r}_{ki} \right|^3} \mathbf{r}_{ki} \\
+\end{aligned}\end{split}\]</div>
+<p>The acceleration of the <span class="math notranslate nohighlight">\(j\)</span>th body is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \ddot{\mathbf{r}}_j &amp;= -\sum_{k\neq j} \frac{G m_k}{\left| \mathbf{r}_{kj} \right|^3} \mathbf{r}_{kj} \\
+\end{aligned}\end{split}\]</div>
+<p>Such that the relative acceleration of the <span class="math notranslate nohighlight">\(i\)</span>th body with
+respect to the <span class="math notranslate nohighlight">\(j\)</span>th body is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &amp;= -\sum_{k\neq j} \frac{G m_k}{\left| \mathbf{r}_{kj} \right|^3} \mathbf{r}_{kj} + \sum_{k\neq i} \frac{G m_k}{\left| \mathbf{r}_{ki} \right|^3} \mathbf{r}_{ki} \\
+\end{aligned}\end{split}\]</div>
+<p>We can pull out the <span class="math notranslate nohighlight">\(k=i\)</span> in the first sum and <span class="math notranslate nohighlight">\(k=j\)</span> in the
+second sum:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &amp;= -\frac{G m_i}{\left| \mathbf{r}_{ji} \right|^3} \mathbf{r}_{ji} + \frac{G m_j}{\left| \mathbf{r}_{ij} \right|^3} \mathbf{r}_{ij} -\sum_{k\neq j, k\neq i} \frac{G m_k}{\left| \mathbf{r}_{kj} \right|^3} \mathbf{r}_{kj} + \sum_{k\neq i, k\neq j} \frac{G m_k}{\left| \mathbf{r}_{ki} \right|^3} \mathbf{r}_{ki} \\
+\end{aligned}\end{split}\]</div>
+<p>Combining the first two terms and the last two terms:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \ddot{\mathbf{r}}_{ij} &amp;= -\frac{G (m_i + m_j)}{\left| \mathbf{r}_{ji} \right|^3} \mathbf{r}_{ji} - \sum_{k\neq j, k\neq i} G m_k \left(\frac{\mathbf{r}_{kj}}{{\left| \mathbf{r}_{kj} \right|^3}} - \frac{\mathbf{r}_{ki}}{{\left| \mathbf{r}_{ki} \right|^3}}\right)
+\end{aligned}\]</div>
+<p>Which in the case of the 4-body problem, we take the <span class="math notranslate nohighlight">\(i=1\)</span> and
+<span class="math notranslate nohighlight">\(j=2\)</span>, <span class="math notranslate nohighlight">\(k \in [3,4]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \ddot{\mathbf{r}}_{12} &amp;= -\frac{G (m_1 + m_2)}{\left| \mathbf{r}_{21} \right|^3} \mathbf{r}_{21} - \sum_{k=3}^4 G m_k \left(\frac{\mathbf{r}_{k2}}{{\left| \mathbf{r}_{k2} \right|^3}} - \frac{\mathbf{r}_{k1}}{{\left| \mathbf{r}_{k1} \right|^3}}\right)
+\end{aligned}\]</div>
+<p>Deriving the 10 known integrals of motion begins by first noting that
+the sum of all forces on the system is zero:</p>
+<div class="math notranslate nohighlight">
+\[\sum_i F = \sum_i \sum_{j \neq i} \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right)\]</div>
+<p>Because
+<span class="math notranslate nohighlight">\(F_{sys} = m_{sys} a_{sys} = \sum_i m_i \ddot{\mathbf{r}}_i = 0\)</span>
+for the system as a whole, we can state:</p>
+<div class="math notranslate nohighlight">
+\[\int \sum_i m_i \ddot{\mathbf{r}}_i \: dt = m_{sys} v_{sys} = \sum_i m_i \dot{\mathbf{r}}_i\]</div>
+<p>Integrating once more:</p>
+<div class="math notranslate nohighlight">
+\[\int \sum_i m_i \dot{\mathbf{r}}_i \: dt = m_{sys} v_{sys} t + m_{sys} r_{sys}  = \sum_i m_i \mathbf{r}_i\]</div>
+<p>These two constants of integration <span class="math notranslate nohighlight">\(\mathbf{r}_{sys}\)</span> and
+<span class="math notranslate nohighlight">\(\mathbf{v}_{sys}\)</span> are the first two integrals of motion (making
+up six scalar equations). Specifically, they are solved for by dividing
+by <span class="math notranslate nohighlight">\(m_{sys}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathbf{r}_{sys} &amp;= \frac{1}{m_{sys}} \sum_i m_i \mathbf{r}_i \\
+    \mathbf{v}_{sys} &amp;= \frac{1}{m_{sys}} \sum_i m_i \dot{\mathbf{r}}_i \\
+\end{aligned}\end{split}\]</div>
+<p>The next three integrals of motion are found by taking the summation of
+the angular momentum of the system. We must develop this by taking the
+sum of the torques on members of the system. First, we note that the
+torque on the <span class="math notranslate nohighlight">\(i\)</span>th body is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathbf{\tau}_i &amp;= \mathbf{r}_i \times \mathbf{F}_i \\
+    &amp;= \mathbf{r}_i \times \sum_{j \neq i} \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right) \\
+\end{aligned}\end{split}\]</div>
+<p>Such that the total torque on the system is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sum_i \mathbf{\tau}_i &amp;= \sum_i \mathbf{r}_i \times \sum_{j \neq i} \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right) \\
+    &amp;= \sum_i \sum_{j \neq i} \mathbf{r}_i \times \left( -\frac{G m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \right) \\
+\end{aligned}\end{split}\]</div>
+<p>We then note that
+<span class="math notranslate nohighlight">\(\mathbf{r}_i \times \mathbf{r}_{ji} = -\mathbf{r}_{ji} \times \mathbf{r}_i\)</span>,
+such that each term in the summation is annihilated by its counterpart.
+This leaves us with:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sum_i \mathbf{\tau}_i &amp;= \mathbf{0} \\
+    &amp;= \sum_i \mathbf{r}_i \times m_i \ddot{\mathbf{r}}_i
+\end{aligned}\end{split}\]</div>
+<p>We notice that this summation expansion of the torque is the derivative
+of another quantity:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sum_i \mathbf{r}_i \times m_i \ddot{\mathbf{r}}_i &amp;= \frac{d}{dt} \left( \sum_i \mathbf{r}_i \times m_i \dot{\mathbf{r}}_i \right) \\
+\end{aligned}\end{split}\]</div>
+<p>Which implies that the integral of the derived quantity is an integral
+of motion:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sum_i \mathbf{r}_i \times m_i \dot{\mathbf{r}}_i &amp;= \mathbf{h}_{sys} \\
+\end{aligned}\end{split}\]</div>
+<p>Finally, we enforce conservation of energy by first finding the
+potential function whose gradient is the force on the system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    U &amp;= \frac{1}{2} G \sum_i \sum_{j \neq i} \frac{m_i m_j}{r_{ji}} \\
+\end{aligned}\end{split}\]</div>
+<p>Such that the gradient of the potential function is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \nabla U &amp;= -G \sum_i \sum_{j \neq i} \frac{m_i m_j}{r_{ji}^3} \mathbf{r}_{ji} \\
+    &amp;= \sum_i m_i \ddot{\mathbf{r}} \\
+\end{aligned}\end{split}\]</div>
+<p>Notice that we can express:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sum_i \nabla U &amp;= \sum_i\frac{d U}{d \mathbf{r}_i} \\
+    &amp;= \sum_i m_i \ddot{\mathbf{r}}
+\end{aligned}\end{split}\]</div>
+<p>If we multiply both sides by <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \sum_i m_i \dot{\mathbf{r}}_i \cdot \ddot{\mathbf{r}}_i &amp;= \sum_i\frac{d U}{d \mathbf{r}_i} \frac{d \mathbf{r}_i}{dt} \\
+    &amp;= \frac{d U}{dt} \\
+\end{aligned}\end{split}\]</div>
+<p>We then notice that the left side can also be expressed as the
+derivative of a quantity:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{dU}{dt} &amp;= \frac{d}{dt} \left( \sum_i m_i \dot{r}_i^2 \right) \\
+    U = \sum_i m_i \dot{r}_i^2 + C_2 \\
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(C_2\)</span> is the total system energy. Plugging in our particle
+system representation of <span class="math notranslate nohighlight">\(U\)</span>, we find that the total system energy
+is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    C_2 &amp;= \sum_i m_i \dot{r}_i^2 - \frac{1}{2} G \sum_i \sum_{j \neq i} \frac{m_i m_j}{r_{ji}} \\
+\end{aligned}\end{split}\]</div>
+</section>
+</section>
+<section id="fall-2023">
+<h2>Fall 2023<a class="headerlink" href="#fall-2023" title="Link to this heading">¶</a></h2>
+<p>Note that this problem was also given in Fall 2021.</p>
+<section id="problem-statement-1">
+<span id="id1"></span><h3>Problem Statement<a class="headerlink" href="#problem-statement-1" title="Link to this heading">¶</a></h3>
 <p>Assuming Keplerian motion, several important types of orbital maneuvers
 are noncoplanar. For example, the capability to change the ascending
 node can widen the launch window.</p>
@@ -89,8 +257,8 @@ is the value of <span class="math notranslate nohighlight">\(\theta_f\)</span>?<
 the required <span class="math notranslate nohighlight">\(\Delta v\)</span>.</p></li>
 </ol>
 </section>
-<section id="solution">
-<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h3>
+<section id="solution-1">
+<span id="id2"></span><h3>Solution<a class="headerlink" href="#solution-1" title="Link to this heading">¶</a></h3>
 <p>We can form a spherical triangle with side lengths
 <span class="math notranslate nohighlight">\(\Omega_f - \Omega_o\)</span> along the equator, and then <span class="math notranslate nohighlight">\(\theta_i\)</span>
 extending upwards from the left at an angle of <span class="math notranslate nohighlight">\(i_o\)</span>, and
@@ -152,12 +320,16 @@ the same for both the initial and final orbits:</p>
     &amp;\approx 0.60 \sqrt{\frac{\mu_\oplus}{3R_\oplus}} \\
     &amp;\approx 2.86 \: [km/s] \\
 \end{aligned}\end{split}\]</div>
+<p>This concludes the derivation of the ten integrals of motion for the
+n-body problem. The first six scalars are the initial position and
+velocity of the system, and the next three are the angular momentum of
+the system. The final scalar is the total energy of the system.</p>
 </section>
 </section>
 <section id="problem-0">
 <h2>Problem 0<a class="headerlink" href="#problem-0" title="Link to this heading">¶</a></h2>
-<section id="problem-statement-1">
-<span id="id1"></span><h3>Problem Statement<a class="headerlink" href="#problem-statement-1" title="Link to this heading">¶</a></h3>
+<section id="problem-statement-2">
+<span id="id3"></span><h3>Problem Statement<a class="headerlink" href="#problem-statement-2" title="Link to this heading">¶</a></h3>
 <p>In Keplerian mechanics, several important types of orbital maneuvers are
 noncoplanar. For example, the capability to change both the ascending
 node and the inclination with only one maneuver is efficient and can
@@ -174,8 +346,8 @@ determine the magnitude of the required single impulse to accomplish
 the goal.</p></li>
 </ol>
 </section>
-<section id="solution-1">
-<span id="id2"></span><h3>Solution<a class="headerlink" href="#solution-1" title="Link to this heading">¶</a></h3>
+<section id="solution-2">
+<span id="id4"></span><h3>Solution<a class="headerlink" href="#solution-2" title="Link to this heading">¶</a></h3>
 <p>We’ll define the “location” of the maneuver in the initial and final
 orbits with the argument of latitude <span class="math notranslate nohighlight">\(\theta_o\)</span> and
 <span class="math notranslate nohighlight">\(\theta_f\)</span>, the angle between the ascending node and the
@@ -224,7 +396,7 @@ third interior angle <span class="math notranslate nohighlight">\(a_3\)</span>:<
     \frac{\sin\theta_f}{\sin i_o} &amp;= \frac{\sin(\Omega_f - \Omega_o)}{\sin a_3} = 1 \\
     \sin\theta_f &amp;= \sin 30^\circ \frac{\sin(60^\circ)}{\sin 76^\circ} \\
     &amp;\approx 0.63 \\
-    \theta_f &amp;\approx 40^\circ
+    \theta_f &amp;\approx 26.5^\circ
 \end{aligned}\end{split}\]</div>
 <p>The magnitude of the required impulse is given by the law of cosines,
 where we know that the angle between the initial and final position
@@ -246,10 +418,10 @@ in the initial orbit is given by:</p>
 \end{aligned}\end{split}\]</div>
 </section>
 </section>
-<section id="problem-1">
-<h2>Problem 1<a class="headerlink" href="#problem-1" title="Link to this heading">¶</a></h2>
-<section id="problem-statement-2">
-<span id="id3"></span><h3>Problem Statement<a class="headerlink" href="#problem-statement-2" title="Link to this heading">¶</a></h3>
+<section id="fall-2019">
+<h2>Fall 2019<a class="headerlink" href="#fall-2019" title="Link to this heading">¶</a></h2>
+<section id="problem-statement-3">
+<span id="id5"></span><h3>Problem Statement<a class="headerlink" href="#problem-statement-3" title="Link to this heading">¶</a></h3>
 <p>Consider a hyperbolic flyby of a planet</p>
 <ol class="arabic simple">
 <li><p>Determine the values of the periapsis flyby radius <span class="math notranslate nohighlight">\(r_p\)</span> and
@@ -264,8 +436,8 @@ numerical values for the corresponding turn angle <span class="math notranslate 
 the hyperbolic eccentricity <span class="math notranslate nohighlight">\(e\)</span>.</p></li>
 </ol>
 </section>
-<section id="solution-2">
-<span id="id4"></span><h3>Solution<a class="headerlink" href="#solution-2" title="Link to this heading">¶</a></h3>
+<section id="solution-3">
+<span id="id6"></span><h3>Solution<a class="headerlink" href="#solution-3" title="Link to this heading">¶</a></h3>
 <p>We know that the angle between the incoming and outgoing hyperbolic
 asymptotes is given by:</p>
 <div class="math notranslate nohighlight">
