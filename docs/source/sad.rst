@@ -1,10 +1,188 @@
 Attitude Dynamics Past Problems
 ===============================
 
+Spring 2021
+-----------
+
+Problem Statement
+~~~~~~~~~~~~~~~~~
+
+A thin rod satellite moves in a circular Earth orbit in locked rotation;
+the long axis of the rod is in the radial direction. Assume that the
+Earth gravity is modelled as inverse square. After perturbation, the
+satellite carries out a small libration motion in the orbital plane
+about the position vector. The orbit radius is at :math:`630` km
+altitude. Determine the libration period.
+
+Solution
+~~~~~~~~
+
+We know that the gravity gradient torque — approximated to the first
+order — is given by:
+
+.. math:: \boldsymbol{L} = \frac{3\mu}{R^5} \boldsymbol{R} \times \boldsymbol{I} \cdot \boldsymbol{R}
+
+Likewise, the evolution of the angular velocity of the body frame with
+respect to the inertial frame is given by Euler’s equations of motion:
+
+.. math:: \boldsymbol{I} \cdot \dot{\boldsymbol{\omega}}_\mathcal{B/N} = -\boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \cdot \boldsymbol{\omega}_\mathcal{B/N} + \boldsymbol{L}
+
+If we define an intermediate reference frame with a fundamental plane in
+the orbital plane and the :math:`\hat{\boldsymbol{b}}_1` axis aligned
+with the orbital radius vector, then we can express the angular velocity
+of the body frame with respect to the inertial frame as:
+
+.. math:: \boldsymbol{\omega}_\mathcal{B/N} = \boldsymbol{\omega}_\mathcal{B/O} + \boldsymbol{\omega}_\mathcal{O/N} =\boldsymbol{\omega}_\mathcal{B/O} + \Omega \hat{\boldsymbol{o}}_3
+
+Since we are told that the satellite is in locked rotation with the
+orbital frame such that its long axis (the axis having the minimum
+moment of inertia) is aligned with the orbital radius vector,
+:math:`\hat{\boldsymbol{b}}_3 = \hat{\boldsymbol{o}}_3` and we can
+write:
+
+.. math:: \boldsymbol{\omega}_\mathcal{B/N} = \boldsymbol{\omega}_\mathcal{B/O} + \Omega \hat{\boldsymbol{b}}_3
+
+The next question is: what is the angular velocity of the body with
+respect to the orbit frame? We are told that the satellite is performing
+a small libration motion in the orbital plane about the position vector.
+This means that the body frame is rotating about the
+:math:`\hat{\boldsymbol{b}}_3` axis with a small angular velocity
+:math:`\boldsymbol{\omega}_\mathcal{B/O} = \omega \hat{\boldsymbol{b}}_3`.
+We can now write the angular velocity of the body frame with respect to
+the inertial frame as:
+
+.. math:: \boldsymbol{\omega}_\mathcal{B/N} = \omega \hat{\boldsymbol{b}}_3 + \Omega \hat{\boldsymbol{b}}_3
+
+Substituting these findings into Euler’s equations of motion along with
+the gravity gradient torque, we get:
+
+.. math::
+
+   \begin{aligned}
+       \dot{\boldsymbol{\omega}} &= \begin{bmatrix}
+           \frac{1}{I_1} \left(\omega_2 \omega_3 \left(I_2 - I_3\right) + \frac{3 \mu}{R^5} \left(R_2 R_3 \left(I_3 - I_2\right)\right)\right) \\
+           \frac{1}{I_2} \left(\omega_3 \omega_1 \left(I_3 - I_1\right) + \frac{3 \mu}{R^5} \left(R_3 R_1 \left(I_1 - I_3\right)\right)\right) \\
+           \frac{1}{I_3} \left(\omega_1 \omega_2 \left(I_1 - I_2\right) + \frac{3 \mu}{R^5} \left(R_1 R_2 \left(I_2 - I_1\right)\right)\right) \\
+       \end{bmatrix} \\
+   \end{aligned}
+
+The components :math:`R_i` of the position are most easily represented
+in the orbital frame, as
+:math:`\boldsymbol{R} = R \hat{\boldsymbol{o}}_1`. If we define the
+orientation of the satellite body frame relative to the orbit frame by
+the direction cosine matrix :math:`\left[\mathcal{BO}\right]` with
+components :math:`C_{ij}`, then we can express the position vector in
+the body frame as:
+
+.. math::
+
+   \begin{aligned}
+       {}^\mathcal{B}\boldsymbol{R} &= \left[\mathcal{BO}\right] {}^\mathcal{O}\boldsymbol{R} \\
+       &= \left[\mathcal{BO}\right] R \hat{\boldsymbol{o}}_1 \\
+       &= R \begin{bmatrix}
+           C_{11} \\ C_{21} \\ C_{31}
+       \end{bmatrix} \\
+   \end{aligned}
+
+Plugging this into our expression for the angular velocity derivative:
+
+.. math::
+
+   \begin{aligned}
+       \dot{\boldsymbol{\omega}} &= \begin{bmatrix}
+           \frac{1}{I_1} \left(\omega_2 \omega_3 \left(I_2 - I_3\right) + \frac{3 \mu}{R^3} \left(C_{21} C_{31} \left(I_3 - I_2\right)\right)\right) \\
+           \frac{1}{I_2} \left(\omega_3 \omega_1 \left(I_3 - I_1\right) + \frac{3 \mu}{R^3} \left(C_{31} C_{11} \left(I_1 - I_3\right)\right)\right) \\
+           \frac{1}{I_3} \left(\omega_1 \omega_2 \left(I_1 - I_2\right) + \frac{3 \mu}{R^3} \left(C_{11} C_{21} \left(I_2 - I_1\right)\right)\right) \\
+       \end{bmatrix} \\
+   \end{aligned}
+
+For the libration motion, we know that the angular velocity is purely
+about the :math:`\hat{\boldsymbol{b}}_3` axis, such that
+:math:`\omega_1 = \omega_2 = 0` and :math:`\omega_3 = \omega`. In
+addition, the libration is contained in the orbital frame, such that
+:math:`C_{31} = \hat{\boldsymbol{b}}_3 \cdot \hat{\boldsymbol{o}}_1 = 0`
+as these two basis vectors remain orthogonal. This simplifies the
+expression for the angular velocity derivative to:
+
+.. math::
+
+   \begin{aligned}
+       \dot{\boldsymbol{\omega}} &= \begin{bmatrix}
+           \frac{1}{I_1} \left(0 \cdot \left(\omega_3 + \Omega\right) \left(I_2 - I_3\right) + \frac{3 \mu}{R^3} \left(C_{21} \cdot 0 \left(I_3 - I_2\right)\right)\right) \\
+           \frac{1}{I_2} \left(\left(0 \cdot \left(\omega_3 + \Omega\right)\right) \cdot 0 \left(I_3 - I_1\right) + \frac{3 \mu}{R^3} \left(0 \cdot C_{11} \left(I_1 - I_3\right)\right)\right) \\
+           \frac{1}{I_3} \left(\left(\omega_3 + \Omega\right) \cdot 0 \left(I_1 - I_2\right) + \frac{3 \mu}{R^3} \left(C_{11} \cdot C_{21} \left(I_2 - I_1\right)\right)\right) \\
+       \end{bmatrix} \\
+       &= \begin{bmatrix}
+           0 \\ 0 \\ \frac{3 \mu}{R^3 I_3} C_{11} C_{21} \left(I_2 - I_1\right) \\
+       \end{bmatrix}
+   \end{aligned}
+
+Simplifying to:
+
+.. math:: \dot{\omega}_3 = \frac{3 \mu}{R^3 I_3} C_{11} C_{21} \left(I_2 - I_1\right)
+
+Assuming that this libration is small, the direction cosine matrix
+:math:`\left[\mathcal{BO}\right]` can be approximated as an
+infinitessimal rotation about the :math:`\hat{\boldsymbol{o}}_3` axis:
+
+.. math::
+
+   \begin{aligned}
+       \left[\mathcal{BO}\right] &= \begin{bmatrix}
+           \cos\vartheta & \sin\vartheta & 0 \\
+           -\sin\vartheta & \cos\vartheta & 0 \\
+           0 & 0 & 1 \\
+       \end{bmatrix} \\
+       &= \begin{bmatrix}
+           1 & \vartheta & 0 \\
+           -\vartheta & 1 & 0 \\
+           0 & 0 & 1 \\
+       \end{bmatrix} \\
+   \end{aligned}
+
+Where :math:`\epsilon` is the libration angle. This means that
+:math:`C_{11} = 1` and :math:`C_{21} = -\vartheta`. Substituting into
+the expression for the angular velocity derivative:
+
+.. math:: \dot{\omega}_3 = -\frac{3 \mu}{R^3 I_3} \vartheta \left(I_2 - I_1\right)
+
+Because the :math:`\dot{\omega}_3` component of the angular velocity is
+defined as the rate of angular change about the
+:math:`\hat{\boldsymbol{b}}_3` axis, :math:`\dot{\omega}_3` is the
+second derivative of the libration angle :math:`\vartheta`, such that:
+
+.. math:: \ddot{\vartheta} + \frac{3 \mu}{R^3 I_3} \vartheta \left(I_2 - I_1\right) = 0
+
+Performing one final substitution:
+
+.. math:: \ddot{\vartheta} - \frac{3 \mu}{R^3} K_1 \vartheta = 0
+
+Where :math:`K_1 = (I_1 - I_2) / I_3`. This is a second order linear
+differential equation with constant coefficients. The solution to this
+equation is:
+
+.. math:: \vartheta = A \cos\left(\sqrt{\frac{3 \mu}{R^3} K_1} t\right) + B \sin\left(\sqrt{\frac{3 \mu}{R^3} K_1} t\right)
+
+Where the constants :math:`A` and :math:`B` are determined by the
+initial conditions of the system. The period of this motion is given by
+:math:`2\pi / f`, where :math:`f` is the frequency of the motion in
+radians per second as expressed inside the cosine and sine functions.
+The frequency is given by:
+
+.. math::
+
+   \begin{aligned}
+       f &= \sqrt{\frac{3 \mu}{R^3} K_1} \\
+       P &= \frac{2\pi}{f} \\
+       &= \frac{2\pi}{\sqrt{\frac{3 \mu}{R^3} K_1}} \\
+   \end{aligned}
+
 Fall 2023
 ---------
 
 This was the first problem written by Dr. Oguri.
+
+.. _problem-statement-1:
 
 Problem Statement
 ~~~~~~~~~~~~~~~~~
@@ -58,6 +236,8 @@ and the inertia tensor dyadic of the stellite about its center of mass
    where :math:`\boldsymbol{R} \in \mathbb{R}^3` is the orbit radius
    vector, can be used without derivation. Show a particular solution of
    the derived differential equations and discuss its linear stability.
+
+.. _solution-1:
 
 Solution
 ~~~~~~~~

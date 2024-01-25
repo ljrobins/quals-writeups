@@ -5,12 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Orbit Determination Past Problem &#8212; ASA Quals  documentation</title>
+    <title>Orbit Determination Past Problems &#8212; ASA Quals  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Attitude Dynamics Past Problems" href="sad.html" />
@@ -31,8 +32,51 @@
 
           <div class="body" role="main">
             
-  <section id="orbit-determination-past-problem">
-<h1>Orbit Determination Past Problem<a class="headerlink" href="#orbit-determination-past-problem" title="Link to this heading">¶</a></h1>
+  <section id="orbit-determination-past-problems">
+<h1>Orbit Determination Past Problems<a class="headerlink" href="#orbit-determination-past-problems" title="Link to this heading">¶</a></h1>
+<section id="fall-2023">
+<h2>Fall 2023<a class="headerlink" href="#fall-2023" title="Link to this heading">¶</a></h2>
+<section id="problem-statement">
+<h3>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading">¶</a></h3>
+<p>Assume an object in a highly eccentric inclined orbit (HEO) around the
+Earth. The object is reported in its Cartesian state space with a mean
+<span class="math notranslate nohighlight">\([x_1,x_2,x_3,v_1,v_2,v_3]\)</span> and the second moment <span class="math notranslate nohighlight">\(\Sigma\)</span>
+in an inertial coordinate frame.</p>
+<ol class="arabic simple">
+<li><p>The coordinates are reported in J2000. How is that frame defined.
+What is the motivation for it? Transform into the coordinates that
+you would need to report to your sensor. Define your sensor location.
+Distinguish between the geocentric and geodetic coordinates
+explicitly.</p></li>
+<li><p>Write out the second moment in the correct form with units S
+explicitly assuming the state (mean and second moment) have been
+propagated through an Extended Kalman filter since the last
+measurement. What probability density distribution does your object
+have? Hypothesize concrete values, justify all your assumptions and
+answers quantitatively and qualitatively.</p></li>
+<li><p>You have the chance to observe the HEO object using a ground-based
+sensor.</p>
+<ol class="arabic simple">
+<li><p>At which anomaly of the orbit are you choosing to observe? Justify
+all your answers qualitatively and quantitatively and explicate
+any assumptions.</p></li>
+<li><p>You are determining a circular orbit with your chosen
+observations. Compute explicitly the error that is inherent in
+that orbit determination.</p></li>
+<li><p>Your orbit has significant uncertainty, how does the uncertainty
+manifest in your circular orbit detemination? Compute explicitly.</p></li>
+</ol>
+</li>
+<li><p>Assume in a ground-based sensor you can only make measurements of the
+velocity components of an Earth-orbiting space object. Device an
+initial orbit determination method for this case. Explicate any
+assumptions and limitations of your method.</p></li>
+</ol>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h3>
+</section>
+</section>
 </section>
 
 
@@ -57,7 +101,14 @@
 <li class="toctree-l1"><a class="reference internal" href="gps.html">Satellite Navigation Past Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="orb.html">Orbit Mechanics Past Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Orbit Determination Past Problem</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Orbit Determination Past Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fall-2023">Fall 2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#problem-statement">Problem Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">

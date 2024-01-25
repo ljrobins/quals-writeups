@@ -62,14 +62,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sad.html#fall-2023">Fall 2023</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sad.html#spring-2021">Spring 2021</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sad.html#problem-statement">Problem Statement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sad.html#solution">Solution</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="sad.html#fall-2023">Fall 2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sad.html#problem-statement-1">Problem Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sad.html#solution-1">Solution</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stm.html#fall-2023">Fall 2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stm.html#problem-statement">Problem Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stm.html#solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -539,10 +551,157 @@ value of <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span>:</p
 <section id="attitude-dynamics-past-problems">
 <h1>Attitude Dynamics Past Problems<a class="headerlink" href="#attitude-dynamics-past-problems" title="Link to this heading">¶</a></h1>
 <section id="id7">
-<h2>Fall 2023<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
-<p>This was the first problem written by Dr. Oguri.</p>
+<h2>Spring 2021<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <section id="id8">
 <h3>Problem Statement<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<p>A thin rod satellite moves in a circular Earth orbit in locked rotation;
+the long axis of the rod is in the radial direction. Assume that the
+Earth gravity is modelled as inverse square. After perturbation, the
+satellite carries out a small libration motion in the orbital plane
+about the position vector. The orbit radius is at <span class="math notranslate nohighlight">\(630\)</span> km
+altitude. Determine the libration period.</p>
+</section>
+<section id="id9">
+<h3>Solution<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>We know that the gravity gradient torque — approximated to the first
+order — is given by:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{L} = \frac{3\mu}{R^5} \boldsymbol{R} \times \boldsymbol{I} \cdot \boldsymbol{R}\]</div>
+<p>Likewise, the evolution of the angular velocity of the body frame with
+respect to the inertial frame is given by Euler’s equations of motion:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{I} \cdot \dot{\boldsymbol{\omega}}_\mathcal{B/N} = -\boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \cdot \boldsymbol{\omega}_\mathcal{B/N} + \boldsymbol{L}\]</div>
+<p>If we define an intermediate reference frame with a fundamental plane in
+the orbital plane and the <span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_1\)</span> axis aligned
+with the orbital radius vector, then we can express the angular velocity
+of the body frame with respect to the inertial frame as:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}_\mathcal{B/N} = \boldsymbol{\omega}_\mathcal{B/O} + \boldsymbol{\omega}_\mathcal{O/N} =\boldsymbol{\omega}_\mathcal{B/O} + \Omega \hat{\boldsymbol{o}}_3\]</div>
+<p>Since we are told that the satellite is in locked rotation with the
+orbital frame such that its long axis (the axis having the minimum
+moment of inertia) is aligned with the orbital radius vector,
+<span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_3 = \hat{\boldsymbol{o}}_3\)</span> and we can
+write:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}_\mathcal{B/N} = \boldsymbol{\omega}_\mathcal{B/O} + \Omega \hat{\boldsymbol{b}}_3\]</div>
+<p>The next question is: what is the angular velocity of the body with
+respect to the orbit frame? We are told that the satellite is performing
+a small libration motion in the orbital plane about the position vector.
+This means that the body frame is rotating about the
+<span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_3\)</span> axis with a small angular velocity
+<span class="math notranslate nohighlight">\(\boldsymbol{\omega}_\mathcal{B/O} = \omega \hat{\boldsymbol{b}}_3\)</span>.
+We can now write the angular velocity of the body frame with respect to
+the inertial frame as:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}_\mathcal{B/N} = \omega \hat{\boldsymbol{b}}_3 + \Omega \hat{\boldsymbol{b}}_3\]</div>
+<p>Substituting these findings into Euler’s equations of motion along with
+the gravity gradient torque, we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}} &amp;= \begin{bmatrix}
+        \frac{1}{I_1} \left(\omega_2 \omega_3 \left(I_2 - I_3\right) + \frac{3 \mu}{R^5} \left(R_2 R_3 \left(I_3 - I_2\right)\right)\right) \\
+        \frac{1}{I_2} \left(\omega_3 \omega_1 \left(I_3 - I_1\right) + \frac{3 \mu}{R^5} \left(R_3 R_1 \left(I_1 - I_3\right)\right)\right) \\
+        \frac{1}{I_3} \left(\omega_1 \omega_2 \left(I_1 - I_2\right) + \frac{3 \mu}{R^5} \left(R_1 R_2 \left(I_2 - I_1\right)\right)\right) \\
+    \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>The components <span class="math notranslate nohighlight">\(R_i\)</span> of the position are most easily represented
+in the orbital frame, as
+<span class="math notranslate nohighlight">\(\boldsymbol{R} = R \hat{\boldsymbol{o}}_1\)</span>. If we define the
+orientation of the satellite body frame relative to the orbit frame by
+the direction cosine matrix <span class="math notranslate nohighlight">\(\left[\mathcal{BO}\right]\)</span> with
+components <span class="math notranslate nohighlight">\(C_{ij}\)</span>, then we can express the position vector in
+the body frame as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{B}\boldsymbol{R} &amp;= \left[\mathcal{BO}\right] {}^\mathcal{O}\boldsymbol{R} \\
+    &amp;= \left[\mathcal{BO}\right] R \hat{\boldsymbol{o}}_1 \\
+    &amp;= R \begin{bmatrix}
+        C_{11} \\ C_{21} \\ C_{31}
+    \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>Plugging this into our expression for the angular velocity derivative:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}} &amp;= \begin{bmatrix}
+        \frac{1}{I_1} \left(\omega_2 \omega_3 \left(I_2 - I_3\right) + \frac{3 \mu}{R^3} \left(C_{21} C_{31} \left(I_3 - I_2\right)\right)\right) \\
+        \frac{1}{I_2} \left(\omega_3 \omega_1 \left(I_3 - I_1\right) + \frac{3 \mu}{R^3} \left(C_{31} C_{11} \left(I_1 - I_3\right)\right)\right) \\
+        \frac{1}{I_3} \left(\omega_1 \omega_2 \left(I_1 - I_2\right) + \frac{3 \mu}{R^3} \left(C_{11} C_{21} \left(I_2 - I_1\right)\right)\right) \\
+    \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>For the libration motion, we know that the angular velocity is purely
+about the <span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_3\)</span> axis, such that
+<span class="math notranslate nohighlight">\(\omega_1 = \omega_2 = 0\)</span> and <span class="math notranslate nohighlight">\(\omega_3 = \omega\)</span>. In
+addition, the libration is contained in the orbital frame, such that
+<span class="math notranslate nohighlight">\(C_{31} = \hat{\boldsymbol{b}}_3 \cdot \hat{\boldsymbol{o}}_1 = 0\)</span>
+as these two basis vectors remain orthogonal. This simplifies the
+expression for the angular velocity derivative to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}} &amp;= \begin{bmatrix}
+        \frac{1}{I_1} \left(0 \cdot \left(\omega_3 + \Omega\right) \left(I_2 - I_3\right) + \frac{3 \mu}{R^3} \left(C_{21} \cdot 0 \left(I_3 - I_2\right)\right)\right) \\
+        \frac{1}{I_2} \left(\left(0 \cdot \left(\omega_3 + \Omega\right)\right) \cdot 0 \left(I_3 - I_1\right) + \frac{3 \mu}{R^3} \left(0 \cdot C_{11} \left(I_1 - I_3\right)\right)\right) \\
+        \frac{1}{I_3} \left(\left(\omega_3 + \Omega\right) \cdot 0 \left(I_1 - I_2\right) + \frac{3 \mu}{R^3} \left(C_{11} \cdot C_{21} \left(I_2 - I_1\right)\right)\right) \\
+    \end{bmatrix} \\
+    &amp;= \begin{bmatrix}
+        0 \\ 0 \\ \frac{3 \mu}{R^3 I_3} C_{11} C_{21} \left(I_2 - I_1\right) \\
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Simplifying to:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\omega}_3 = \frac{3 \mu}{R^3 I_3} C_{11} C_{21} \left(I_2 - I_1\right)\]</div>
+<p>Assuming that this libration is small, the direction cosine matrix
+<span class="math notranslate nohighlight">\(\left[\mathcal{BO}\right]\)</span> can be approximated as an
+infinitessimal rotation about the <span class="math notranslate nohighlight">\(\hat{\boldsymbol{o}}_3\)</span> axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \left[\mathcal{BO}\right] &amp;= \begin{bmatrix}
+        \cos\vartheta &amp; \sin\vartheta &amp; 0 \\
+        -\sin\vartheta &amp; \cos\vartheta &amp; 0 \\
+        0 &amp; 0 &amp; 1 \\
+    \end{bmatrix} \\
+    &amp;= \begin{bmatrix}
+        1 &amp; \vartheta &amp; 0 \\
+        -\vartheta &amp; 1 &amp; 0 \\
+        0 &amp; 0 &amp; 1 \\
+    \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the libration angle. This means that
+<span class="math notranslate nohighlight">\(C_{11} = 1\)</span> and <span class="math notranslate nohighlight">\(C_{21} = -\vartheta\)</span>. Substituting into
+the expression for the angular velocity derivative:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\omega}_3 = -\frac{3 \mu}{R^3 I_3} \vartheta \left(I_2 - I_1\right)\]</div>
+<p>Because the <span class="math notranslate nohighlight">\(\dot{\omega}_3\)</span> component of the angular velocity is
+defined as the rate of angular change about the
+<span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_3\)</span> axis, <span class="math notranslate nohighlight">\(\dot{\omega}_3\)</span> is the
+second derivative of the libration angle <span class="math notranslate nohighlight">\(\vartheta\)</span>, such that:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\vartheta} + \frac{3 \mu}{R^3 I_3} \vartheta \left(I_2 - I_1\right) = 0\]</div>
+<p>Performing one final substitution:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\vartheta} - \frac{3 \mu}{R^3} K_1 \vartheta = 0\]</div>
+<p>Where <span class="math notranslate nohighlight">\(K_1 = (I_1 - I_2) / I_3\)</span>. This is a second order linear
+differential equation with constant coefficients. The solution to this
+equation is:</p>
+<div class="math notranslate nohighlight">
+\[\vartheta = A \cos\left(\sqrt{\frac{3 \mu}{R^3} K_1} t\right) + B \sin\left(\sqrt{\frac{3 \mu}{R^3} K_1} t\right)\]</div>
+<p>Where the constants <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are determined by the
+initial conditions of the system. The period of this motion is given by
+<span class="math notranslate nohighlight">\(2\pi / f\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the frequency of the motion in
+radians per second as expressed inside the cosine and sine functions.
+The frequency is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    f &amp;= \sqrt{\frac{3 \mu}{R^3} K_1} \\
+    P &amp;= \frac{2\pi}{f} \\
+    &amp;= \frac{2\pi}{\sqrt{\frac{3 \mu}{R^3} K_1}} \\
+\end{aligned}\end{split}\]</div>
+</section>
+</section>
+<section id="id10">
+<h2>Fall 2023<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<p>This was the first problem written by Dr. Oguri.</p>
+<section id="id11">
+<span id="id12"></span><h3>Problem Statement<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
 <p>Let us analyically investigate the attitude motion of a satellite under
 torque, <span class="math notranslate nohighlight">\(\boldsymbol{L} \in \mathbb{R}^3\)</span></p>
 <p>The inertial frame and satellite body-fixed frames are represented by
@@ -590,8 +749,8 @@ vector, can be used without derivation. Show a particular solution of
 the derived differential equations and discuss its linear stability.</p></li>
 </ol>
 </section>
-<section id="id9">
-<h3>Solution<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<section id="id13">
+<span id="id14"></span><h3>Solution<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
 <p>Part 1:</p>
 <p>Beginning with:</p>
 <div class="math notranslate nohighlight">
@@ -936,8 +1095,51 @@ produce a net torque which is not restoring.</p>
 </section>
 </section>
 </section>
-<section id="orbit-determination-past-problem">
-<h1>Orbit Determination Past Problem<a class="headerlink" href="#orbit-determination-past-problem" title="Link to this heading">¶</a></h1>
+<section id="orbit-determination-past-problems">
+<h1>Orbit Determination Past Problems<a class="headerlink" href="#orbit-determination-past-problems" title="Link to this heading">¶</a></h1>
+<section id="id15">
+<h2>Fall 2023<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
+<section id="id16">
+<h3>Problem Statement<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<p>Assume an object in a highly eccentric inclined orbit (HEO) around the
+Earth. The object is reported in its Cartesian state space with a mean
+<span class="math notranslate nohighlight">\([x_1,x_2,x_3,v_1,v_2,v_3]\)</span> and the second moment <span class="math notranslate nohighlight">\(\Sigma\)</span>
+in an inertial coordinate frame.</p>
+<ol class="arabic simple">
+<li><p>The coordinates are reported in J2000. How is that frame defined.
+What is the motivation for it? Transform into the coordinates that
+you would need to report to your sensor. Define your sensor location.
+Distinguish between the geocentric and geodetic coordinates
+explicitly.</p></li>
+<li><p>Write out the second moment in the correct form with units S
+explicitly assuming the state (mean and second moment) have been
+propagated through an Extended Kalman filter since the last
+measurement. What probability density distribution does your object
+have? Hypothesize concrete values, justify all your assumptions and
+answers quantitatively and qualitatively.</p></li>
+<li><p>You have the chance to observe the HEO object using a ground-based
+sensor.</p>
+<ol class="arabic simple">
+<li><p>At which anomaly of the orbit are you choosing to observe? Justify
+all your answers qualitatively and quantitatively and explicate
+any assumptions.</p></li>
+<li><p>You are determining a circular orbit with your chosen
+observations. Compute explicitly the error that is inherent in
+that orbit determination.</p></li>
+<li><p>Your orbit has significant uncertainty, how does the uncertainty
+manifest in your circular orbit detemination? Compute explicitly.</p></li>
+</ol>
+</li>
+<li><p>Assume in a ground-based sensor you can only make measurements of the
+velocity components of an Earth-orbiting space object. Device an
+initial orbit determination method for this case. Explicate any
+assumptions and limitations of your method.</p></li>
+</ol>
+</section>
+<section id="id17">
+<h3>Solution<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+</section>
+</section>
 </section>
 
 
@@ -962,7 +1164,7 @@ produce a net torque which is not restoring.</p>
 <li class="toctree-l1"><a class="reference internal" href="gps.html">Satellite Navigation Past Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="orb.html">Orbit Mechanics Past Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problems</a></li>
 </ul>
 
 <div class="relations">
