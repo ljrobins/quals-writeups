@@ -61,7 +61,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sad.html">Attitude Dynamics Past Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sad.html#fall-2023">Fall 2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sad.html#problem-statement">Problem Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sad.html#solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="stm.html">Orbit Determination Past Problem</a></li>
 </ul>
 </div>
@@ -531,6 +538,403 @@ value of <span class="math notranslate nohighlight">\(\Delta v_{eq}\)</span>:</p
 </section>
 <section id="attitude-dynamics-past-problems">
 <h1>Attitude Dynamics Past Problems<a class="headerlink" href="#attitude-dynamics-past-problems" title="Link to this heading">¶</a></h1>
+<section id="id7">
+<h2>Fall 2023<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<p>This was the first problem written by Dr. Oguri.</p>
+<section id="id8">
+<h3>Problem Statement<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<p>Let us analyically investigate the attitude motion of a satellite under
+torque, <span class="math notranslate nohighlight">\(\boldsymbol{L} \in \mathbb{R}^3\)</span></p>
+<p>The inertial frame and satellite body-fixed frames are represented by
+<span class="math notranslate nohighlight">\(\mathcal{N}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>, where
+<span class="math notranslate nohighlight">\(\left\{\hat{\boldsymbol{n}}_1, \hat{\boldsymbol{n}}_2, \hat{\boldsymbol{n}}_3\right\}\)</span>
+and
+<span class="math notranslate nohighlight">\(\left\{\hat{\boldsymbol{b}}_1, \hat{\boldsymbol{b}}_2, \hat{\boldsymbol{b}}_3\right\}\)</span>
+are right-handed bases attached to the <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> and
+<span class="math notranslate nohighlight">\(\mathcal{B}\)</span> frames, respectively.</p>
+<p>Denote the angular velocity of the <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> frame with
+respect to the <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> frame as
+<span class="math notranslate nohighlight">\(\boldsymbol{\omega}_\mathcal{B/N} = \omega_i \hat{\boldsymbol{b}}_i\)</span>
+and the inertia tensor dyadic of the stellite about its center of mass
+(CoM) by
+<span class="math notranslate nohighlight">\(\boldsymbol{I} = I_i \hat{\boldsymbol{b}}_i \hat{\boldsymbol{b}}_i\)</span>.</p>
+<ol class="arabic">
+<li><p>Derive the following equation from
+<span class="math notranslate nohighlight">\(\dot{\boldsymbol{H}} = \boldsymbol{L}\)</span>, where
+<span class="math notranslate nohighlight">\(\boldsymbol{H}\)</span> represents the body’s angular momentum about
+the CoM.</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{I} \cdot \dot{\boldsymbol{\omega}}_\mathcal{B/N} = -\boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \cdot \boldsymbol{\omega}_\mathcal{B/N} + \boldsymbol{L}\]</div>
+</li>
+<li><p>Starting from the above equation, derive a set of differential
+equations that describe the time derivative of <span class="math notranslate nohighlight">\(\omega_i\)</span> for
+<span class="math notranslate nohighlight">\(i = 1,2,3\)</span>, where
+<span class="math notranslate nohighlight">\(\boldsymbol{L} = L_i \hat{\boldsymbol{b}}_i\)</span>.</p></li>
+<li><p>Assume that <span class="math notranslate nohighlight">\(I_1 &lt; I_2 &lt; I_3\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{L} = 0\)</span>.
+Show that a rotation about <span class="math notranslate nohighlight">\(\hat{b}_1\)</span> is a particular solution
+of the differential equations derived above, and discuss the linear
+stability of the solution; if it is linearly stable, also discuss
+whether or not the solution is asymptotically stable with the
+mathematical reasoning. Finally, qualitatively discuss whether the
+stability properties changes over time when there is energy
+dissipation (e.g., due to fuel sloshing).</p></li>
+<li><p>Assume that <span class="math notranslate nohighlight">\(I_1 &gt; I_3 &gt; I_2\)</span> and now <span class="math notranslate nohighlight">\(\boldsymbol{L}\)</span>
+represents the gravity gradient (GG) torque in a circular orbit of
+radius <span class="math notranslate nohighlight">\(R\)</span> about a planet of gravitational parameter
+<span class="math notranslate nohighlight">\(\mu\)</span>. ?Using an attitude representation of your choice, derive
+both the Kinematic and dynamic differential equations that govern the
+satellite motion. Here, an approximate epression of the GG torque,
+<span class="math notranslate nohighlight">\(\boldsymbol{L} \approx \frac{3\mu}{R^5} \boldsymbol{R} \times \boldsymbol{I} \cdot \boldsymbol{R}\)</span>
+where <span class="math notranslate nohighlight">\(\boldsymbol{R} \in \mathbb{R}^3\)</span> is the orbit radius
+vector, can be used without derivation. Show a particular solution of
+the derived differential equations and discuss its linear stability.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h3>Solution<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>Part 1:</p>
+<p>Beginning with:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\boldsymbol{H}} = \boldsymbol{L}\]</div>
+<p>We recognize that the angular momentum vector
+<span class="math notranslate nohighlight">\(\boldsymbol{H} = \boldsymbol{I} \boldsymbol{\omega}\)</span> such that in
+the body frame:</p>
+<div class="math notranslate nohighlight">
+\[I \dot{\boldsymbol{\omega}} = \boldsymbol{L}\]</div>
+<p>The BKE tells us that the time derivative of a vector in an reference
+frame is related to the same vector’s derivative in the rotating frame
+by the angular velocity:</p>
+<div class="math notranslate nohighlight">
+\[{}^\mathcal{N}\dot{\boldsymbol{v}} = {}^\mathcal{B}\dot{\boldsymbol{v}} + \boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{v}\]</div>
+<p>To be specific, when we say the derivative of a vector expressed in a
+certain frame, like <span class="math notranslate nohighlight">\({}^\mathcal{N}\dot{\boldsymbol{v}}\)</span>, we mean
+the time derivative of the vectors elements when expressed in the basis
+vectors of that frame. So, for example, if we have a vector
+<span class="math notranslate nohighlight">\(\boldsymbol{v} = v_i \hat{\boldsymbol{n}}_i\)</span> expressed in the
+<span class="math notranslate nohighlight">\(\mathcal{N}\)</span> frame, then
+<span class="math notranslate nohighlight">\({}^\mathcal{N}\dot{\boldsymbol{v}} = \dot{\boldsymbol{v}}_i \hat{\boldsymbol{n}}_i\)</span>
+as the basis vectors are constant in their frame. Applying this to the
+angular momentum, we can take its body frame derivative:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{N}\dot{\boldsymbol{H}} &amp;= {}^\mathcal{B}\dot{\boldsymbol{H}} + \boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{H} \\
+    &amp;= \boldsymbol{I} \dot{\boldsymbol{\omega}}_\mathcal{B/N} + \boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \boldsymbol{\omega}_\mathcal{B/N} \\
+\end{aligned}\end{split}\]</div>
+<p>Since we know that
+<span class="math notranslate nohighlight">\({}^\mathcal{N}\dot{\boldsymbol{H}} = \boldsymbol{L}\)</span>, we can
+substitute to yield:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{L} &amp;= \boldsymbol{I} \dot{\boldsymbol{\omega}}_\mathcal{B/N} + \boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \boldsymbol{\omega}_\mathcal{B/N} \\
+    \boldsymbol{I} \dot{\boldsymbol{\omega}}_\mathcal{B/N} &amp;= -\boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \boldsymbol{\omega}_\mathcal{B/N} + \boldsymbol{L} \\
+\end{aligned}\end{split}\]</div>
+<p>Completing the proof.</p>
+<p>Part 2:</p>
+<p>We can expand the above equation into its components, noting that if the
+body basis vectors are the principal axes of the body, then the inertia
+tensor is diagonal and the cross product terms are zero:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+        I_1 &amp; 0 &amp; 0 \\
+        0 &amp; I_2 &amp; 0 \\
+        0 &amp; 0 &amp; I_3 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \dot{\boldsymbol{\omega}}_1 \\
+        \dot{\boldsymbol{\omega}}_2 \\
+        \dot{\boldsymbol{\omega}}_3 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{\omega}_1 \\
+        \boldsymbol{\omega}_2 \\
+        \boldsymbol{\omega}_3 \\
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        I_1 &amp; 0 &amp; 0 \\
+        0 &amp; I_2 &amp; 0 \\
+        0 &amp; 0 &amp; I_3 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\omega}_1 \\
+        \boldsymbol{\omega}_2 \\
+        \boldsymbol{\omega}_3 \\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        L_1 \\
+        L_2 \\
+        L_3 \\
+    \end{bmatrix}\end{split}\]</div>
+<p>Such that the scalar EOMs are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}}_1 &amp;= \frac{1}{I_1} \left(\omega_2 \omega_3 \left(I_2 - I_3\right) + L_1 \right)\\
+    \dot{\boldsymbol{\omega}}_2 &amp;= \frac{1}{I_2} \left(\omega_3 \omega_1 \left(I_3 - I_1\right) + L_2 \right)\\
+    \dot{\boldsymbol{\omega}}_3 &amp;= \frac{1}{I_3} \left(\omega_1 \omega_2 \left(I_1 - I_2\right) + L_3 \right)\\
+\end{aligned}\end{split}\]</div>
+<p>Part 3:</p>
+<p>A rotation purely about <span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_1\)</span> implies that
+<span class="math notranslate nohighlight">\(\boldsymbol{\omega} = \omega_1 \hat{\boldsymbol{b}}_1\)</span> with
+<span class="math notranslate nohighlight">\(\omega_2=\omega_3 = 0\)</span> such that the EOMs become when
+<span class="math notranslate nohighlight">\(\boldsymbol{L} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}}_1 &amp;= \frac{1}{I_1} \left(0 \cdot 0 \left(I_2 - I_3\right) + 0 \right)\\
+    \dot{\boldsymbol{\omega}}_2 &amp;= \frac{1}{I_2} \left(0 \cdot \omega_1 \left(I_3 - I_1\right) + 0 \right)\\
+    \dot{\boldsymbol{\omega}}_3 &amp;= \frac{1}{I_3} \left(\omega_1 \cdot 0 \left(I_1 - I_2\right) + 0 \right)\\
+\end{aligned}\end{split}\]</div>
+<p>Which simplify:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}}_1 &amp;= 0\\
+    \dot{\boldsymbol{\omega}}_2 &amp;= 0\\
+    \dot{\boldsymbol{\omega}}_3 &amp;= 0\\
+\end{aligned}\end{split}\]</div>
+<p>This means that the angular velocity is constant in time, and therefore
+this is a particular solution to the EOMs. To determine the stability of
+this solution, we can linearize the EOMs about this solution by taking
+the first order Taylor series expansion of the EOMs about the solution,
+where we substitute
+<span class="math notranslate nohighlight">\(\boldsymbol{\omega} = \boldsymbol{\omega} + \delta\boldsymbol{\omega}\)</span>,
+discarding any higher order terms in <span class="math notranslate nohighlight">\(\delta\boldsymbol{\omega}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\omega} =
+    \begin{bmatrix} \omega_1 + \delta\omega_1 \\ 0 + \delta\omega_2 \\ 0 + \delta\omega_3 \end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}}_1 &amp;= \frac{1}{I_1} \left(\left(\delta\omega_3 \cdot  \delta\omega_2\right) \left(I_2 - I_3\right) \right)\\
+    \dot{\boldsymbol{\omega}}_2 &amp;= \frac{1}{I_2} \left(\left(\left(\omega_1 + \delta\omega_1\right) \cdot \delta\omega_3\right) \left(I_3 - I_1\right) \right)\\
+    \dot{\boldsymbol{\omega}}_3 &amp;= \frac{1}{I_3} \left(\left(\left(\omega_1 + \delta\omega_1\right) \cdot \delta\omega_2\right) \left(I_1 - I_2\right) \right)\\
+\end{aligned}\end{split}\]</div>
+<p>Simplifying:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}}_1 &amp;= 0 \\
+    \dot{\boldsymbol{\omega}}_2 &amp;= \frac{1}{I_2} \left(\omega_1 \cdot \delta\omega_3 \left(I_3 - I_1\right) \right)\\
+    \dot{\boldsymbol{\omega}}_3 &amp;= \frac{1}{I_3} \left(\omega_1 \cdot \delta\omega_2 \left(I_1 - I_2\right) \right)\\
+\end{aligned}\end{split}\]</div>
+<p>Finding the eigenvalues of this system will determine its linear
+stability. We can rearrange this as a linear system in terms of the
+perturbation <span class="math notranslate nohighlight">\(\delta \omega_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{\boldsymbol{\omega}} &amp;= \boldsymbol{A} \delta \omega \\
+    &amp;= \begin{bmatrix}
+        0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; \frac{1}{I_2} \left(\omega_1 \left(I_3 - I_1\right) \right)\\
+        0 &amp; \frac{1}{I_3} \left(\omega_1 \left(I_1 - I_2\right) \right) &amp; 0 \\
+    \end{bmatrix}
+    \begin{bmatrix} \delta\omega_1 \\ \delta\omega_2 \\ \delta\omega_3 \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>The eigenvalues of this linear system are given by the solution to:</p>
+<div class="math notranslate nohighlight">
+\[\det\left(\boldsymbol{A} - \lambda \boldsymbol{I}\right) = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \det\left(\begin{bmatrix}
+        -\lambda &amp; 0 &amp; 0 \\
+        0 &amp; -\lambda &amp; \frac{1}{I_2} \left(\omega_1 \left(I_3 - I_1\right) \right)\\
+        0 &amp; \frac{1}{I_3} \left(\omega_1 \left(I_1 - I_2\right) \right) &amp; -\lambda \\
+    \end{bmatrix}\right) &amp;= 0 \\
+    \lambda \left( \lambda^2 - \frac{\omega_1^2 \left(I_1 - I_2\right) \left(I_3 - I_1\right)}{I_2 I_3} \right) &amp;= 0 \\
+\end{aligned}\end{split}\]</div>
+<p>Which has solutions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \lambda_1 &amp;= 0 \\
+    \lambda_2 &amp;= \sqrt{\frac{\omega_1^2 \left(I_1 - I_2\right) \left(I_3 - I_1\right)}{I_2 I_3}} \\
+    \lambda_3 &amp;= -\sqrt{\frac{\omega_1^2 \left(I_1 - I_2\right) \left(I_3 - I_1\right)}{I_2 I_3}} \\
+\end{aligned}\end{split}\]</div>
+<p>Because we are told that <span class="math notranslate nohighlight">\(I_1 &lt; I_2 &lt; I_3\)</span>, we know that
+<span class="math notranslate nohighlight">\(\left(I_1 - I_2\right) &lt; 0\)</span> and
+<span class="math notranslate nohighlight">\(\left(I_3 - I_1\right) &gt; 0\)</span> such that second and third
+eigenvalues are purely imaginary as the argument under the square root
+must be negative. Due to the presence of a zero eigenvalue, the system
+is marginally stable in the linear sense.</p>
+<p>The system is not asymptotically stable as no eigenvalues have negative
+real parts. This means that the system will not return to the
+equilibrium solution after a perturbation. This makes intuitive sense as
+torque-free rigid body motion has no damping capability to return the
+system to the equilibrium solution.</p>
+<p>Let’s now turn out attention to the question of energy dissipation. We
+know that the total kinetic energy of the system is given by:</p>
+<div class="math notranslate nohighlight">
+\[T = \frac{1}{2} \boldsymbol{\omega} \cdot \boldsymbol{I} \cdot \boldsymbol{\omega}\]</div>
+<p>We know that as long as no torque is applied to the system due to an
+external force, the total angular momentum of the system is conserved.
+Thinking back to the construction of the energy ellipsoid and momentum
+sphere (expressed in body-frame angular momentum coordinates), losing
+energy will shrink the energy ellipsoid nonlinearly along all its axes.
+This could completely change the stability properties of the motion.
+Shrinking the ellipsoid to the point where are one of its axes has the
+same magnitude as the angular momentum sphere will create a directrix,
+resulting in unstable motion about the intermediate axis.</p>
+<p>Part 4:</p>
+<p>The attitude representation of choice for this writeup is the direction
+cosine matrix (DCM). We know that the DCM
+<span class="math notranslate nohighlight">\(\left[\mathcal{BN}\right]\)</span> is defined as the matrix that takes
+vectors from the inertial frame to the body frame:</p>
+<div class="math notranslate nohighlight">
+\[{}^\mathcal{B}\boldsymbol{v} = \left[\mathcal{BN}\right] {}^\mathcal{N}\boldsymbol{v}\]</div>
+<p>The kinematic differential equation for the DCM is a relationship
+between the time derivative of the DCM and the angular velocity of the
+body frame with respect to the inertial frame. We can derive a
+relationship between these quantities by taking the
+<span class="math notranslate nohighlight">\(\mathcal{N}\)</span>-frame derivative of the <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>-frame
+basis vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{}^\mathcal{N}\frac{d}{dt}\left(
+        \begin{bmatrix}
+            \hat{\boldsymbol{b}}_1 \\ \hat{\boldsymbol{b}}_2 \\ \hat{\boldsymbol{b}}_3
+        \end{bmatrix}
+    \right) = {}^\mathcal{B}\frac{d}{dt}\left(
+        \begin{bmatrix}
+            \hat{\boldsymbol{b}}_1 \\ \hat{\boldsymbol{b}}_2 \\ \hat{\boldsymbol{b}}_3
+        \end{bmatrix}
+    \right) + \boldsymbol{\omega}_\mathcal{B/N} \times \left(
+        \begin{bmatrix}
+            \hat{\boldsymbol{b}}_1 \\ \hat{\boldsymbol{b}}_2 \\ \hat{\boldsymbol{b}}_3
+        \end{bmatrix}
+    \right)\end{split}\]</div>
+<p>Here we note that the <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>-frame derivative of the
+<span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_i\)</span> unit vectors is zero. Further, we can
+replace the cross product on the right hand side with the matrix
+multiplication of the skew symmetric matrix of the angular velocity with
+the basis vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{N}\frac{d}{dt}\left(
+        \begin{bmatrix}
+            \hat{\boldsymbol{b}}_1 \\ \hat{\boldsymbol{b}}_2 \\ \hat{\boldsymbol{b}}_3
+        \end{bmatrix}
+    \right) &amp;= [\boldsymbol{\omega}_\mathcal{B/N}\times]
+        \begin{bmatrix}
+            \hat{\boldsymbol{b}}_1 \\ \hat{\boldsymbol{b}}_2 \\ \hat{\boldsymbol{b}}_3
+        \end{bmatrix} \\
+        &amp;= \begin{bmatrix}
+            0 &amp; -\omega_3 &amp; \omega_2 \\
+            \omega_3 &amp; 0 &amp; -\omega_1 \\
+            -\omega_2 &amp; \omega_1 &amp; 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \hat{\boldsymbol{b}}_1 \\ \hat{\boldsymbol{b}}_2 \\ \hat{\boldsymbol{b}}_3
+        \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>We now proceed by computing the effect of the <span class="math notranslate nohighlight">\(\mathcal{N}\)</span>-frame
+derivative on each of the <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>-frame basis vectors,
+beginning with <span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{N}\frac{d}{dt}\left(\hat{\boldsymbol{b}}_1\right) &amp;= \begin{bmatrix}
+            0 &amp; -\omega_3 &amp; \omega_2 \\
+            \omega_3 &amp; 0 &amp; -\omega_1 \\
+            -\omega_2 &amp; \omega_1 &amp; 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 \\ 0 \\ 0
+        \end{bmatrix} = \begin{bmatrix}
+            0 \\ \omega_3 \\ -\omega_2
+        \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{N}\frac{d}{dt}\left(\hat{\boldsymbol{b}}_2\right) &amp;= \begin{bmatrix}
+            0 &amp; -\omega_3 &amp; \omega_2 \\
+            \omega_3 &amp; 0 &amp; -\omega_1 \\
+            -\omega_2 &amp; \omega_1 &amp; 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 \\ 1 \\ 0
+        \end{bmatrix} = \begin{bmatrix}
+            -\omega_3 \\ 0 \\ \omega_1
+        \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{N}\frac{d}{dt}\left(\hat{\boldsymbol{b}}_3\right) &amp;= \begin{bmatrix}
+            0 &amp; -\omega_3 &amp; \omega_2 \\
+            \omega_3 &amp; 0 &amp; -\omega_1 \\
+            -\omega_2 &amp; \omega_1 &amp; 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 \\ 0 \\ 1
+        \end{bmatrix} = \begin{bmatrix}
+            \omega_2 \\ -\omega_1 \\ 0
+        \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>At this point, we notice that since the DCM can be expressed as the dot
+product of the basis vectors of the two frames:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\mathcal{BN}\right] = \begin{bmatrix}
+        \hat{\boldsymbol{b}}_1 \cdot \hat{\boldsymbol{n}}_1 &amp; \hat{\boldsymbol{b}}_1 \cdot \hat{\boldsymbol{n}}_2 &amp; \hat{\boldsymbol{b}}_1 \cdot \hat{\boldsymbol{n}}_3 \\
+        \hat{\boldsymbol{b}}_2 \cdot \hat{\boldsymbol{n}}_1 &amp; \hat{\boldsymbol{b}}_2 \cdot \hat{\boldsymbol{n}}_2 &amp; \hat{\boldsymbol{b}}_2 \cdot \hat{\boldsymbol{n}}_3 \\
+        \hat{\boldsymbol{b}}_3 \cdot \hat{\boldsymbol{n}}_1 &amp; \hat{\boldsymbol{b}}_3 \cdot \hat{\boldsymbol{n}}_2 &amp; \hat{\boldsymbol{b}}_3 \cdot \hat{\boldsymbol{n}}_3 \\
+    \end{bmatrix}\end{split}\]</div>
+<p>Which is really just rows of <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>-frame vectors expressed
+in the <span class="math notranslate nohighlight">\(\mathcal{N}\)</span>-frame:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\mathcal{BN}\right] = \begin{bmatrix}
+        {}^\mathcal{N}\hat{\boldsymbol{b}}_1 \\ {}^\mathcal{N}\hat{\boldsymbol{b}}_2 \\ {}^\mathcal{N}\hat{\boldsymbol{b}}_3 \\
+    \end{bmatrix}\end{split}\]</div>
+<p>Differentiating:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \left[\dot{\mathcal{BN}}\right] = \begin{bmatrix}
+        {}^\mathcal{N}\frac{d}{dt}\left(\hat{\boldsymbol{b}}_1\right) \\ {}^\mathcal{N}\frac{d}{dt}\left(\hat{\boldsymbol{b}}_2\right) \\ {}^\mathcal{N}\frac{d}{dt}\left(\hat{\boldsymbol{b}}_3\right) \\
+    \end{bmatrix} = \begin{bmatrix}
+        0 &amp; \omega_3 &amp; -\omega_2 \\
+        -\omega_3 &amp; 0 &amp; \omega_1 \\
+        \omega_2 &amp; -\omega_1 &amp; 0 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        {}^\mathcal{N}\hat{\boldsymbol{b}}_1 \\ {}^\mathcal{N}\hat{\boldsymbol{b}}_2 \\ {}^\mathcal{N}\hat{\boldsymbol{b}}_3 \\
+    \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>Such that:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\left[\mathcal{BN}\right]} = -\left[\boldsymbol{\omega}_\mathcal{B/N}\times\right] \left[\mathcal{BN}\right]\]</div>
+<p>Deriving the dynamic differential equation in terms of the DCM requires
+us to express the orbital radius vector (defined in the orbital frame as
+<span class="math notranslate nohighlight">\(\boldsymbol{R} = R \hat{o}_1\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    {}^\mathcal{B}\boldsymbol{R} &amp;= \left[\mathcal{BO}\right] \begin{bmatrix} R \\ 0 \\ 0 \end{bmatrix} \\
+    &amp;= R \begin{bmatrix} C_{11} \\ C_{21} \\ C_{31} \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>Such that the gravity gradient torque is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{L} &amp;= \frac{3\mu}{R^5} \boldsymbol{R} \times \boldsymbol{I} \cdot \boldsymbol{R} \\
+    &amp;= \frac{3\mu}{R^3} \begin{bmatrix} C_{11} \\ C_{21} \\ C_{31} \end{bmatrix} \times \begin{bmatrix} I_1 &amp; 0 &amp; 0 \\ 0 &amp; I_2 &amp; 0 \\ 0 &amp; 0 &amp; I_3 \end{bmatrix} \begin{bmatrix} C_{11} \\ C_{21} \\ C_{31} \end{bmatrix} \\
+    &amp;= \frac{3\mu}{R^3} \begin{bmatrix} C_{21} C_{31} \left(I_3 - I_2\right) \\ C_{31} C_{11} \left(I_1 - I_3\right) \\ C_{11} C_{21} \left(I_2 - I_1\right) \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>Plugging this into the EOMs:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{I} \cdot \dot{\boldsymbol{\omega}}_\mathcal{B/N} &amp;= -\boldsymbol{\omega}_\mathcal{B/N} \times \boldsymbol{I} \cdot \boldsymbol{\omega}_\mathcal{B/N} + \boldsymbol{L} \\
+    \begin{bmatrix} I_1 &amp; 0 &amp; 0 \\ 0 &amp; I_2 &amp; 0 \\ 0 &amp; 0 &amp; I_3 \end{bmatrix} \begin{bmatrix} \dot{\boldsymbol{\omega}}_1 \\ \dot{\boldsymbol{\omega}}_2 \\ \dot{\boldsymbol{\omega}}_3 \end{bmatrix} &amp;= \begin{bmatrix} \omega_2 \omega_3 \left(I_2 - I_3\right) \\ \omega_3 \omega_1 \left(I_3 - I_1\right) \\ \omega_1 \omega_2 \left(I_1 - I_2\right) \end{bmatrix} + \frac{3\mu}{R^3} \begin{bmatrix} C_{21} C_{31} \left(I_3 - I_2\right) \\ C_{31} C_{11} \left(I_1 - I_3\right) \\ C_{11} C_{21} \left(I_2 - I_1\right) \end{bmatrix} \\
+\end{aligned}\end{split}\]</div>
+<p>A particular solution of these equations occurs when the body is
+oriented such that one of its principal axes is in line with the orbital
+radius vector and body is rotating at the same rate as the orbit
+(<span class="math notranslate nohighlight">\(\Omega\)</span>). If we choose to align the largest moment of inertia
+body axis (<span class="math notranslate nohighlight">\(I_1\)</span>) with the orbital radius vector, then we can
+simplify the above equations by noticing that <span class="math notranslate nohighlight">\(C_{11} = 1\)</span>,
+<span class="math notranslate nohighlight">\(C_{21} = C_{31} = 0\)</span>, while <span class="math notranslate nohighlight">\(\omega_3 = \Omega\)</span>,
+<span class="math notranslate nohighlight">\(\omega_2 = \omega_1 = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \begin{bmatrix} I_1 &amp; 0 &amp; 0 \\ 0 &amp; I_2 &amp; 0 \\ 0 &amp; 0 &amp; I_3 \end{bmatrix} \begin{bmatrix} \dot{\boldsymbol{\omega}}_1 \\ \dot{\boldsymbol{\omega}}_2 \\ \dot{\boldsymbol{\omega}}_3 \end{bmatrix} &amp;= \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>This particular solution is expected to be unstable as any small
+rotation about <span class="math notranslate nohighlight">\(\hat{\boldsymbol{b}}_3\)</span> will create an additional
+torque that will cause large-scale oscillations. This is illustrated by
+drawing the scenario and showing that any small reorientation will
+produce a net torque which is not restoring.</p>
+</section>
+</section>
 </section>
 <section id="orbit-determination-past-problem">
 <h1>Orbit Determination Past Problem<a class="headerlink" href="#orbit-determination-past-problem" title="Link to this heading">¶</a></h1>
